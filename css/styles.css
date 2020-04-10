@@ -2,21 +2,84 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    color: #000;
 }
 
 main {
-    background: url("../images/rainbow.jpg") #dcedc1 center no-repeat;
+
     flex: 1 0 auto;
 }
 
+section {
+    background: url("../images/rainbow.jpg") #dcedc1 center no-repeat;
+    background-attachment: fixed;
+    background-size:contain;
+}
+
 .center-text {
-    text-align: center;
+    text-align: center !important;
+}
+
+.fixed {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.logo {
+    max-width: 6%;
+    min-width: 2em;
+    height: auto;
+}
+
+.padding-left {
+    padding-left: 0.5em !important;
+}
+
+.padding-top {
+    padding-top: 2%;
 }
 .status-btn {
     position: relative;
-    top: -50px;
+    top: -35px;
+    border-radius: 20%;
 }
 
+.status-txt {
+    text-align: center;
+    position: relative;
+    top: -22px;
+}
 /*
-colors: #a8e6cf • #dcedc1 • #ffd3b6 • #ffaaa5 • #ff8b94
+------------------------------------------------------------------------------------------------
+COULEURS
+------------------------------------------------------------------------------------------------
 */
+
+.noir {
+    color: #000;
+}
+.vert {
+    background-color: #a8e6cf;
+}
+
+.vert-pale {
+    background-color: #dcedc1;
+}
+
+.orange {
+    background-color: #ffd3b6;
+}
+
+.rose {
+    background-color: #ffaaa5;
+}
+
+.rouge {
+    background-color: #ff8b94;
+}
+
+.bleu {
+    background-color: #dbffff;
+}
