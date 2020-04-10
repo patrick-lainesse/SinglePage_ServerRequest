@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!--
+Travail préparé par: Patrick Lainesse
+Matricule: 740302
+Dans le cadre du cours IFT1142, session H2020
+
+Single Page Application qui se connecte à un serveur PHP pour obtenir des données en format XML et construit des tableaux
+pour afficher les patients, établissements et hospitalisations.
+
+Notions appliquées:
+- ES6 pour la programmation Javascript
+- DOM pour accéder et créer des éléments dans la page Web
+- AJAX et JQuery pour effectuer les requêtes au serveur
+- Serveur simple programmé en PHP
+- Utilisation du material design pour bâtir le squelette de la page Web
+
+Ressources utilisées:
+- https://materializecss.com/ -->
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Évolution de la Covid-19</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header>
+<!--navbar-->
+<nav class="nav-extended">
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Logo</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="sass.html">Sass</a></li>
+            <li><a href="badges.html">Components</a></li>
+            <li><a href="collapsible.html">JavaScript</a></li>
+        </ul>
+    </div>
+    <div class="nav-content">
+        <ul class="tabs tabs-transparent">
+            <li class="tab"><a class="waves-effect btn-flat"><i class="material-icons left">assignment_ind</i>Liste des patients</a></li>
+            <li class="tab"><a class="waves-effect btn-flat" href="#test2"><i class="material-icons left">assignment</i>Liste des établissements</a></li>
+            <li class="tab"><a class="waves-effect btn-flat" href="#test3"><i class="material-icons left">airport_shuttle</i>Liste des hospitalisations</a></li>
+            <li class="tab"><a class="waves-effect btn-flat" href="#test4"><i class="material-icons left">airline_seat_flat</i>Hospitalisations par patient</a></li>
+            <li class="tab"><a class="active waves-effect btn-flat" href="#test5"><i class="material-icons left">people_outline</i>Hospitalisations par établissement et par spécialité</a></li>
+        </ul>
+    </div>
+</nav>
+
+<ul class="sidenav" id="mobile-demo">
+    <li><a href="sass.html">Sass</a></li>
+    <li><a href="badges.html">Components</a></li>
+    <li><a href="collapsible.html">JavaScript</a></li>
+</ul>
+
+<div id="test1" class="col s12">Test 1</div>
+<div id="test2" class="col s12">Test 2</div>
+<div id="test3" class="col s12">Test 3</div>
+<div id="test4" class="col s12">Test 4</div>
+<!--fin navbar-->
+</header>
+<main>
+    <!--endroit où iront les tableaux-->
+    <table class="striped responsive-table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Item Name</th>
+            <th>Item Price</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td>Alvin</td>
+            <td>Eclair</td>
+            <td>$0.87</td>
+        </tr>
+        <tr>
+            <td>Alan</td>
+            <td>Jellybean</td>
+            <td>$3.76</td>
+        </tr>
+        <tr>
+            <td>Jonathan</td>
+            <td>Lollipop</td>
+            <td>$7.00</td>
+        </tr>
+        </tbody>
+    </table>
+
+</main>
+
+<!--footer-->
+<footer class="page-footer">
+    <div class="center-text">
+        <a class="btn-large status-btn">Status</a>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Footer Content</h5>
+                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2014 Copyright Text
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+        </div>
+    </div>
+</footer>
+<!--fin footer-->
+
+</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</html>
