@@ -1,6 +1,7 @@
 # SinglePage_ServerRequest
 
-Lien: 
+Lien: https://patrick-lainesse.github.io/SinglePage_ServerRequest/
+
 Single Page Application qui se connecte à un serveur PHP pour obtenir des données en format XML et construit des tableaux
 pour afficher les patients, établissements et hospitalisations.
 
