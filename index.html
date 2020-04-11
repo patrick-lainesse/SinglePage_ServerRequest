@@ -17,7 +17,8 @@ Notions appliquées:
 Ressources utilisées:
 - https://materializecss.com/
 - Arrière-plan: Pishier http://pishier.com/
-- Icône: LovePaperCrafts https://www.lovepapercrafts.com/free-rainbow-svg/
+- Logo: LovePaperCrafts https://www.lovepapercrafts.com/free-rainbow-svg/
+- Favicon: https://www.stockio.com/free-icon/rainbow-2
 -->
 
 <html lang="fr">
@@ -28,6 +29,7 @@ Ressources utilisées:
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="images/favicon.svg">
 </head>
 <body>
 
@@ -38,22 +40,25 @@ Ressources utilisées:
         <img src="images/rainbow.png" class= "logo" alt="Logo Ça va bien aller"/><a href="#" class="brand-logo padding-left">Ça va bien aller</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="sass.html">Sass</a></li>
+            <!--<li><a href="sass.html">Sass</a></li>
             <li><a href="badges.html">Components</a></li>
-            <li><a href="collapsible.html">JavaScript</a></li>
+            <li><a href="collapsible.html">JavaScript</a></li>-->
+            <li>Patrick Lainesse</li>
+            <li class="paddingH">Matricule 740302</li>
         </ul>
     </div>
     <div class="nav-content">
-        <ul class="tabs tabs-transparent">
-            <li class="tab"><a class="waves-effect btn-flat light-green darken-2"><i class="material-icons left">assignment_ind</i>Liste des patients</a></li>
-            <li class="tab"><a class="waves-effect btn-flat green darken-4" href="#test2"><i class="material-icons left">assignment</i>Liste des établissements</a></li>
-            <li class="tab"><a class="waves-effect btn-flat amber darken-3" href="#test3"><i class="material-icons left">airport_shuttle</i>Liste des hospitalisations</a></li>
-            <li class="tab"><a class="waves-effect btn-flat deep-orange darken-2" href="#test4"><i class="material-icons left">airline_seat_flat</i>Hospitalisations par patient</a></li>
-            <li class="tab"><a class="waves-effect btn-flat red darken-2" href="#test5"><i class="material-icons left">people_outline</i>Hospitalisations par établissement et par spécialité</a></li>
+        <ul class="tabs tabs-transparent height-auto">
+            <li class="tab height-auto"><a class="waves-effect btn-flat green darken-4 nav-button"><i class="material-icons left">assignment_ind</i>Liste<br>des patients</a></li>
+            <li class="tab height-auto"><a class="waves-effect btn-flat light-green darken-2 nav-button" href="#test2"><i class="material-icons left">assignment</i>Liste des<br>établissements</a></li>
+            <li class="tab height-auto"><a class="waves-effect btn-flat amber darken-3 nav-button" href="#test3"><i class="material-icons left">airport_shuttle</i>Liste des</br>hospitalisations</a></li>
+            <li class="tab height-auto"><a class="waves-effect btn-flat deep-orange darken-2 nav-button" href="#test4"><i class="material-icons left">airline_seat_flat</i>Hospitalisations<br>par patient</a></li>
+            <li class="tab height-auto"><a class="waves-effect btn-flat red darken-2 nav-button" href="#test5"><i class="material-icons left">people_outline</i>Hospitalisations par<br>établissement et par spécialité</a></li>
         </ul>
     </div>
 </nav>
 
+    <!--???-->
 <ul class="sidenav" id="mobile-demo">
     <li><a href="sass.html">Sass</a></li>
     <li><a href="badges.html">Components</a></li>
@@ -62,15 +67,16 @@ Ressources utilisées:
 <!--fin navbar-->
 </header>
 <main>
-    <section>
 
+    <div class="center-text">
     <!-- endroit où iront les infos de l'hôpital sélectionné -->
-    <div class="row padding-top center-text">
-        <div class="col s2">1</div>
-        <div class="col s2">2</div>
-        <div class="col s2">3</div>
-        <div class="col s2">4</div>
-        <div class="col s2">5</div>
+    <div class="row padding-top10 center-text">
+        <div class="col s2">Établissement:<br>2320</div>
+        <div class="col s2">Nom:<br>Hôpital Nord</div>
+        <div class="col s2">Adresse:<br>7562, rue du Souvenir, Nordville, Qc</div>
+        <div class="col s2">Code postal:<br>J4R 2Z5</div>
+        <div class="col s2">Téléphone:<br>(450) 222-3333</div>
+    </div>
     </div>
 
     <!-- endroit où iront les select -->
@@ -201,24 +207,16 @@ Ressources utilisées:
         </tr>
         </tbody>
     </table>
-</section>
 </main>
 
 <!--footer-->
-<footer class="page-footer blue darken-5 fixed">
+<footer class="page-footer blue darken-5 fixed padding-top0">
     <div class="center-text">
         <a class="btn-large status-btn red darken-2">Status</a>
     </div>
-    <div class="container status-txt">Texte en exemple</div><!--????-->
-    <div class="footer-copyright">
-        <div class="container grey-text text-lighten-4 ">
-            Patrick Lainesse
-            <div class="grey-text text-lighten-4 right" href="#!">IFT1142</div>
-            <br>
-            Matricule: 740302
-            <div class="grey-text text-lighten-4 right" href="#!">Hiver 2020</div>
-        </div>
-    </div>
+    <!--
+    <div class="container status-txt">Texte en exemple</div>
+    ???-->
 </footer>
 <!--fin footer-->
 
