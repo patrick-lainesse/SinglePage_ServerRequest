@@ -6,7 +6,7 @@ body {
 }
 
 main {
-    background: url("../images/cava5.png") #FFCEC0 center no-repeat;
+    background: url("../images/cava5.png") #bbdefb center no-repeat;
     background-attachment: fixed;
     background-size:contain;
     flex: 1 0 auto;
@@ -66,6 +66,8 @@ main {
     position: relative;
     top: -20px;
     border-radius: 20%;
+    pointer-events: none;
+    cursor: default;
 }
 
 .status-txt {
