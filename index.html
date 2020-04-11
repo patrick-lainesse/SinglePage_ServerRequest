@@ -37,7 +37,7 @@ Ressources utilisées:
 <!--navbar-->
 <nav class="nav-extended blue darken-5">
     <div class="nav-wrapper">
-        <img src="images/rainbow.png" class= "logo" alt="Logo Ça va bien aller"/><a href="#" class="brand-logo padding-left">Ça va bien aller</a>
+        <img src="images/rainbow.png" class="logo padding-top1" alt="Logo Ça va bien aller"/><a href="#" class="brand-logo padding-left inactif">Ça va bien aller</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <!--<li><a href="sass.html">Sass</a></li>
@@ -68,14 +68,18 @@ Ressources utilisées:
 </header>
 <main>
 
+    <input type="button" value="Lister" onclick="listePatients();">
+    <div id="contenu"></div>
+
+
     <div class="center-text">
     <!-- endroit où iront les infos de l'hôpital sélectionné -->
     <div class="row padding-top10 center-text">
-        <div class="col s2 offset-s1">Établissement:<br>2320</div>
-        <div class="col s2">Nom:<br>Hôpital Nord</div>
-        <div class="col s2">Adresse:<br>7562, rue du Souvenir, Nordville, Qc</div>
-        <div class="col s2">Code postal:<br>J4R 2Z5</div>
-        <div class="col s2">Téléphone:<br>(450) 222-3333</div>
+        <div class="col s2 offset-s1 red">Établissement:<br>2320</div>
+        <div class="col s2 orange">Nom:<br>Hôpital Nord</div>
+        <div class="col s2 yellow">Adresse: 7562, rue du Souvenir, Nordville, Qc</div>
+        <div class="col s2 green">Code postal:<br>J4R 2Z5</div>
+        <div class="col s2 blue">Téléphone:<br>(450) 222-3333</div>
     </div>
     </div>
 

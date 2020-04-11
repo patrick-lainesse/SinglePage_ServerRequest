@@ -27,6 +27,11 @@ main {
     height: auto !important;
 }
 
+.inactif {
+    pointer-events: none;
+    cursor: default;
+}
+
 .logo {
     max-width: 6%;
     min-width: 2em;
@@ -52,6 +57,10 @@ main {
 
 .padding-top0 {
     padding-top: 0;
+}
+
+.padding-top1 {
+    padding-top: 1%;
 }
 
 .padding-top2 {
