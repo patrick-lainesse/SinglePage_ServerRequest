@@ -8,6 +8,8 @@ IFT1142, Hiver 2020
 $(document).ready(function(){
     $('select').formSelect();
     $(".dropdown-content>li>span").css("color", "#660066");
+
+    listePatients();
     //$(".dropdown-content>li>span").css("background", "#006600");
     //???? pour les select
 });
@@ -84,36 +86,36 @@ function afficherTableau(elem) {
     container.appendChild(tableau);
 }
 
-/*function afficherTableau() {
-
-    let tabPatients = xmlHopitaux.getElementsByTagName('patient');
+function charger_select(identifiant) {
 
     let container = document.createElement('div');
-    let tableau = document.createElement('table');
-    let head = document.createElement('thead');
-    let body = document.createElement('tbody');
+    let menu = document.createElement('select');
+    let tableauXML;
 
-    tableau.classList.add('striped');
-    tableau.classList.add('responsive-table');
     container.classList.add('container');
 
-
-    // afficher l'en-tête du tableau
-    //var colonne = tabPatients[0].getElementsByTagName('*');
-    for(let colonne of tabPatients[0].getElementsByTagName('*')) {
-        let en_tete = document.createElement('th');
-        let attribut = majuscule(colonne.nodeName);
-        en_tete.appendChild(document.createTextNode(attribut));
-        head.appendChild(en_tete);
+    switch (identifiant) {
+        case 'nom':
+            menu.setAttribute('id', 'patient');
+            menu.setAttribute('onChange', 'afficherTableau("patient")');
+            tableauXML = xmlHopitaux.getElementsByTagName('patient');
+            break;
     }
-    tableau.appendChild(head);
 
-    for(let i=0; i<tabPatients.length; i++) {
-        let patient = tabPatients[i];
+    for(let i=0; i<tableauXML.length; i++) {
+        let objet = tableauXML[i];
+        let option = document.createElement('option');
+        option.setAttribute('id', tableauXML[objet].dossier);
+        // le texte des options sous le format: 4 (Patrick Lainesse) ??? rendu ici????
+        let texte = tableauXML[objet].dossier + " (" + tableauXML[objet].prenom;
+        option.appendChild(document.createTextNode(texte));
+        menu.appendChild(option);
+    }
+    container.appendChild(menu);
 
-        let tr = document.createElement('tr');
+/*        let tr = document.createElement('tr');
 
-        var tags = patient.getElementsByTagName('*');
+        var tags = objet.getElementsByTagName('*');
 
         for(let j=0; j<tags.length; j++) {
             let attribut = tags[j].firstChild.nodeValue;
@@ -125,8 +127,8 @@ function afficherTableau(elem) {
 
         body.appendChild(tr);
     }
-    tableau.appendChild(body);
+    tableau.appendChild(body);*/
+
 
     document.getElementById('contenu').appendChild(container);
-    container.appendChild(tableau);
-}*/
+}
