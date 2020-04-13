@@ -5,7 +5,7 @@
         <patient>
             <dossier>1</dossier>
             <nom>Léger</nom>
-            <prenom>Émile</prenom>
+            <prénom>Émile</prénom>
             <naissance>1917</naissance>
             <naissance>3</naissance>
             <naissance>26</naissance>
@@ -14,7 +14,7 @@
         <patient>
             <dossier>2</dossier>
             <nom>Bernard</nom>
-            <prenom>Marie</prenom>
+            <prénom>Marie</prénom>
             <naissance>1946</naissance>
             <naissance>2</naissance>
             <naissance>3</naissance>
@@ -23,7 +23,7 @@
         <patient>
             <dossier>3</dossier>
             <nom>Chartrand</nom>
-            <prenom>Guy</prenom>
+            <prénom>Guy</prénom>
             <naissance>1959</naissance>
             <naissance>4</naissance>
             <naissance>5</naissance>
@@ -32,7 +32,7 @@
         <patient>
             <dossier>4</dossier>
             <nom>Côté</nom>
-            <prenom>André</prenom>
+            <prénom>André</prénom>
             <naissance>1978</naissance>
             <naissance>9</naissance>
             <naissance>2</naissance>
@@ -41,7 +41,7 @@
         <patient>
             <dossier>5</dossier>
             <nom>Lavoie</nom>
-            <prenom>Carole</prenom>
+            <prénom>Carole</prénom>
             <naissance>1973</naissance>
             <naissance>11</naissance>
             <naissance>4</naissance>
@@ -50,7 +50,7 @@
         <patient>
             <dossier>6</dossier>
             <nom>Martin</nom>
-            <prenom>Diane</prenom>
+            <prénom>Diane</prénom>
             <naissance>1965</naissance>
             <naissance>12</naissance>
             <naissance>2</naissance>
@@ -59,7 +59,7 @@
         <patient>
             <dossier>7</dossier>
             <nom>Lacroix</nom>
-            <prenom>Pauline</prenom>
+            <prénom>Pauline</prénom>
             <naissance>1956</naissance>
             <naissance>1</naissance>
             <naissance>25</naissance>
@@ -68,7 +68,7 @@
         <patient>
             <dossier>8</dossier>
             <nom>St-Jean</nom>
-            <prenom>Arthur</prenom>
+            <prénom>Arthur</prénom>
             <naissance>1912</naissance>
             <naissance>10</naissance>
             <naissance>7</naissance>
@@ -77,7 +77,7 @@
         <patient>
             <dossier>9</dossier>
             <nom>Béchard</nom>
-            <prenom>Marc</prenom>
+            <prénom>Marc</prénom>
             <naissance>1980</naissance>
             <naissance>8</naissance>
             <naissance>8</naissance>
@@ -86,7 +86,7 @@
         <patient>
             <dossier>10</dossier>
             <nom>Chartrand</nom>
-            <prenom>Mario</prenom>
+            <prénom>Mario</prénom>
             <naissance>1947</naissance>
             <naissance>7</naissance>
             <naissance>23</naissance>
@@ -96,70 +96,70 @@
     
     <tabEtablissements>
         <hopital>
-            <etablissement>1234</etablissement>
+            <établissement>1234</établissement>
             <nom>Centre hospitalier Sud</nom>
             <adresse>1234</adresse>
             <adresse>boul. Sud</adresse>
             <adresse>Montréal</adresse>
             <adresse>Qc</adresse>
-            <telephone>5141231234</telephone>
+            <téléphone>5141231234</téléphone>
             <code_postal>H2M3Y6</code_postal>
         </hopital>
         <hopital>
-            <etablissement>2346</etablissement>
+            <établissement>2346</établissement>
             <nom>Hôpital Nord</nom>
             <adresse>7562</adresse>
             <adresse>rue du Souvenir</adresse>
             <adresse>Nordville</adresse>
             <adresse>Qc</adresse>
-            <telephone>4502223333</telephone>
+            <téléphone>4502223333</téléphone>
             <code_postal>J4R2Z5</code_postal>
         </hopital>
         <hopital>
-            <etablissement>3980</etablissement>
+            <établissement>3980</établissement>
             <nom>Hôpital Centre</nom>
             <adresse>4637</adresse>
             <adresse>boul. de l&#x27;Église</adresse>
             <adresse>Montréal</adresse>
             <adresse>Qc</adresse>
-            <telephone>5141235678</telephone>
+            <téléphone>5141235678</téléphone>
             <code_postal>H3J4K8</code_postal>
         </hopital>
         <hopital>
-            <etablissement>4177</etablissement>
+            <établissement>4177</établissement>
             <nom>Centre hospitalier Est</nom>
             <adresse>12</adresse>
             <adresse>rue Bernard</adresse>
             <adresse>Repentigny</adresse>
             <adresse>Qc</adresse>
-            <telephone>4505892345</telephone>
+            <téléphone>4505892345</téléphone>
             <code_postal>J8R3K5</code_postal>
         </hopital>
         <hopital>
-            <etablissement>7306</etablissement>
+            <établissement>7306</établissement>
             <nom>Hôpital du salut</nom>
             <adresse>11</adresse>
             <adresse>rue de la Rédemption</adresse>
             <adresse>Saint-Basile</adresse>
             <adresse>Qc</adresse>
-            <telephone>4503456789</telephone>
+            <téléphone>4503456789</téléphone>
             <code_postal>J8H2O4</code_postal>
         </hopital>
         <hopital>
-            <etablissement>8895</etablissement>
+            <établissement>8895</établissement>
             <nom>Dernier recours</nom>
             <adresse>999</adresse>
             <adresse>rue Saint-Pierre</adresse>
             <adresse>Longueuil</adresse>
             <adresse>Qc</adresse>
-            <telephone>4505554741</telephone>
+            <téléphone>4505554741</téléphone>
             <code_postal>J7B3J6</code_postal>
         </hopital>
     </tabEtablissements>
 
     <tabHospitalisations>
         <hospitalisation>
-            <etablissement>1234</etablissement>
+            <établissement>1234</établissement>
             <dossier>5</dossier>
             <admission>2000</admission>
             <admission>8</admission>
@@ -167,10 +167,10 @@
             <sortie>2001</sortie>
             <sortie>8</sortie>
             <sortie>14</sortie>
-            <specialite>médecine</specialite>
+            <spécialité>médecine</spécialité>
         </hospitalisation>
         <hospitalisation>
-            <etablissement>1234</etablissement>
+            <établissement>1234</établissement>
             <dossier>10</dossier>
             <admission>1992</admission>
             <admission>12</admission>
@@ -178,10 +178,10 @@
             <sortie>1992</sortie>
             <sortie>12</sortie>
             <sortie>12</sortie>
-            <specialite>chirurgie</specialite>
+            <spécialité>chirurgie</spécialité>
         </hospitalisation>
         <hospitalisation>
-            <etablissement>2346</etablissement>
+            <établissement>2346</établissement>
             <dossier>8</dossier>
             <admission>2003</admission>
             <admission>3</admission>
@@ -189,10 +189,10 @@
             <sortie>2003</sortie>
             <sortie>3</sortie>
             <sortie>5</sortie>
-            <specialite>médecine</specialite>
+            <spécialité>médecine</spécialité>
         </hospitalisation>
         <hospitalisation>
-            <etablissement>2346</etablissement>
+            <établissement>2346</établissement>
             <dossier>1</dossier>
             <admission>1997</admission>
             <admission>11</admission>
@@ -200,10 +200,10 @@
             <sortie>1997</sortie>
             <sortie>11</sortie>
             <sortie>12</sortie>
-            <specialite>orthopédie</specialite>
+            <spécialité>orthopédie</spécialité>
         </hospitalisation>
         <hospitalisation>
-            <etablissement>2346</etablissement>
+            <établissement>2346</établissement>
             <dossier>3</dossier>
             <admission>1995</admission>
             <admission>4</admission>
@@ -211,10 +211,10 @@
             <sortie>1995</sortie>
             <sortie>4</sortie>
             <sortie>30</sortie>
-            <specialite>médecine</specialite>
+            <spécialité>médecine</spécialité>
         </hospitalisation>
         <hospitalisation>
-            <etablissement>3980</etablissement>
+            <établissement>3980</établissement>
             <dossier>5</dossier>
             <admission>2000</admission>
             <admission>2</admission>
@@ -222,10 +222,10 @@
             <sortie>2000</sortie>
             <sortie>3</sortie>
             <sortie>14</sortie>
-            <specialite>médecine</specialite>
+            <spécialité>médecine</spécialité>
         </hospitalisation>
         <hospitalisation>
-            <etablissement>3980</etablissement>
+            <établissement>3980</établissement>
             <dossier>5</dossier>
             <admission>2001</admission>
             <admission>1</admission>
@@ -233,10 +233,10 @@
             <sortie>2001</sortie>
             <sortie>2</sortie>
             <sortie>1</sortie>
-            <specialite>médecine</specialite>
+            <spécialité>médecine</spécialité>
         </hospitalisation>
         <hospitalisation>
-            <etablissement>3980</etablissement>
+            <établissement>3980</établissement>
             <dossier>9</dossier>
             <admission>1995</admission>
             <admission>4</admission>
@@ -244,10 +244,10 @@
             <sortie>1995</sortie>
             <sortie>4</sortie>
             <sortie>8</sortie>
-            <specialite>orthopédie</specialite>
+            <spécialité>orthopédie</spécialité>
         </hospitalisation>
         <hospitalisation>
-            <etablissement>3980</etablissement>
+            <établissement>3980</établissement>
             <dossier>7</dossier>
             <admission>1999</admission>
             <admission>11</admission>
@@ -255,10 +255,10 @@
             <sortie>1999</sortie>
             <sortie>12</sortie>
             <sortie>4</sortie>
-            <specialite>chirurgie</specialite>
+            <spécialité>chirurgie</spécialité>
         </hospitalisation>
         <hospitalisation>
-            <etablissement>3980</etablissement>
+            <établissement>3980</établissement>
             <dossier>10</dossier>
             <admission>1997</admission>
             <admission>4</admission>
@@ -266,10 +266,10 @@
             <sortie>1997</sortie>
             <sortie>5</sortie>
             <sortie>5</sortie>
-            <specialite>chirurgie</specialite>
+            <spécialité>chirurgie</spécialité>
         </hospitalisation>
         <hospitalisation>
-            <etablissement>4177</etablissement>
+            <établissement>4177</établissement>
             <dossier>3</dossier>
             <admission>2001</admission>
             <admission>8</admission>
@@ -277,10 +277,10 @@
             <sortie>2001</sortie>
             <sortie>12</sortie>
             <sortie>5</sortie>
-            <specialite>médecine</specialite>
+            <spécialité>médecine</spécialité>
         </hospitalisation>
         <hospitalisation>
-            <etablissement>4177</etablissement>
+            <établissement>4177</établissement>
             <dossier>3</dossier>
             <admission>2002</admission>
             <admission>2</admission>
@@ -288,10 +288,10 @@
             <sortie>2002</sortie>
             <sortie>2</sortie>
             <sortie>23</sortie>
-            <specialite>orthopédie</specialite>
+            <spécialité>orthopédie</spécialité>
         </hospitalisation>
         <hospitalisation>
-            <etablissement>7306</etablissement>
+            <établissement>7306</établissement>
             <dossier>2</dossier>
             <admission>1998</admission>
             <admission>5</admission>
@@ -299,7 +299,7 @@
             <sortie>1998</sortie>
             <sortie>5</sortie>
             <sortie>27</sortie>
-            <specialite>orthopédie</specialite>
+            <spécialité>orthopédie</spécialité>
         </hospitalisation>
     </tabHospitalisations>
 

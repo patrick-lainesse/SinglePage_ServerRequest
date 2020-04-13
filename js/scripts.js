@@ -13,8 +13,8 @@ $(document).ready(function(){
 });
 
 let xmlHopitaux = null;
-//let xmlHopitaux = new XML();
 
+// mettre un argument à cette fonction????
 function listePatients() {
     $.ajax({
         type: "GET",
@@ -24,8 +24,7 @@ function listePatients() {
         dataType: "xml",
         success: function(reponse) {
             xmlHopitaux = reponse;
-            afficherPatients();
-            //test1();
+            afficherTableau("patient");
         },
         fail: function() {
             alert("Gros problème");
@@ -33,40 +32,81 @@ function listePatients() {
     })
 }
 
-function test1() {
-    let unPatient = xmlHopitaux.getElementsByTagName('patient');
-    let tags = unPatient[0].getElementsByTagName('*');
-    for (let i = 0; i < tags.length; i++) {
-        alert(tags[i].nodeName + ' = ' + tags[i].firstChild.nodeValue);
-    }
-}
+/* Fonction qui s'exécute quand on sélectionne une des quatre premières options (afficher patients, établissements,...).
+Elle reçoit comme paramètre l'élément qui a été sélectionné, pour permettre de sélectionner
+les bonnes informations à afficher. Le deuxième paramètre est le no de dossier du patient à afficher pour l'option
+hospitalisations par patient. Le no de dossier est à 0 pour les trois premières options (afficher les tableaux JSON). */
+//function afficherTableau(elem, dossier, codeEtab, spec) {
+function afficherTableau(elem) {
 
-function afficherPatients() {
+    let tableauXML = xmlHopitaux.getElementsByTagName(elem);
 
-    let tabPatients = xmlHopitaux.getElementsByTagName('patient');
-    let taille = tabPatients.length;
-    let emplacement = document.getElementById('contenu');
-
+    let container = document.createElement('div');
     let tableau = document.createElement('table');
-    let titre = document.createElement('caption');
     let head = document.createElement('thead');
-    let en_tete = document.createElement('th');
     let body = document.createElement('tbody');
-
-    let rangee = document.createElement('tr');
-    let cellule = document.createElement('td');
 
     tableau.classList.add('striped');
     tableau.classList.add('responsive-table');
+    container.classList.add('container');
 
-    titre.appendChild(document.createTextNode("Liste des patients"));
-    tableau.appendChild(titre);
 
-/*    for (let i = 0; i < tags.length; i++) {
-        alert(tags[i].nodeName + ' = ' + tags[i].firstChild.nodeValue);
-    }*/
 
-    //let tabPatients = xmlHopitaux.getElementsByTagName('patient');
+    // afficher l'en-tête du tableau
+    for(let colonne of tableauXML[0].getElementsByTagName('*')) {
+        let en_tete = document.createElement('th');
+        let attribut = majuscule(colonne.nodeName);
+        en_tete.appendChild(document.createTextNode(attribut));
+        head.appendChild(en_tete);
+    }
+    tableau.appendChild(head);
+
+    for(let i=0; i<tableauXML.length; i++) {
+        let patient = tableauXML[i];
+
+        let tr = document.createElement('tr');
+
+        var tags = patient.getElementsByTagName('*');
+
+        for(let j=0; j<tags.length; j++) {
+            let attribut = tags[j].firstChild.nodeValue;
+
+            let td = document.createElement('td');
+            td.appendChild(document.createTextNode(attribut));
+            tr.appendChild(td);
+        }
+
+        body.appendChild(tr);
+    }
+    tableau.appendChild(body);
+
+    document.getElementById('contenu').appendChild(container);
+    container.appendChild(tableau);
+}
+
+/*function afficherTableau() {
+
+    let tabPatients = xmlHopitaux.getElementsByTagName('patient');
+
+    let container = document.createElement('div');
+    let tableau = document.createElement('table');
+    let head = document.createElement('thead');
+    let body = document.createElement('tbody');
+
+    tableau.classList.add('striped');
+    tableau.classList.add('responsive-table');
+    container.classList.add('container');
+
+
+    // afficher l'en-tête du tableau
+    //var colonne = tabPatients[0].getElementsByTagName('*');
+    for(let colonne of tabPatients[0].getElementsByTagName('*')) {
+        let en_tete = document.createElement('th');
+        let attribut = majuscule(colonne.nodeName);
+        en_tete.appendChild(document.createTextNode(attribut));
+        head.appendChild(en_tete);
+    }
+    tableau.appendChild(head);
 
     for(let i=0; i<tabPatients.length; i++) {
         let patient = tabPatients[i];
@@ -87,48 +127,6 @@ function afficherPatients() {
     }
     tableau.appendChild(body);
 
-    document.getElementById('contenu').appendChild(tableau);
-
-/*    // afficher l'en-tête du tableau
-    for(let attribut of tabPatients[0]) {
-        head.appendChild(document.createTextNode(attribut));
-        rangee.appendChild(head);
-    }
-    body.appendChild(rangee);*/
-}
-
-/*
-function afficherPatients() {
-    var tabPatients = xmlHopitaux.getElementsByTagName('patient');
-    var taille = tabPatients.length;
-
-/!*<table class="striped responsive-table">
-        <thead>
-        <tr>
-        <th>Name</th>
-        <th>Item Name</th>
-    <th>Item Price</th>
-    </tr>
-    </thead>*!/
-
-    var rep = "<table border=1>";
-    rep += "<caption>LISTE DES PATIENTS</caption>";
-    rep += "<thead><tr><th>DOSSIER</th><th>NOM</th><th>PRÉNOM</th><th>ANNÉE</th><th>MOIS</th><th>JOUR</th><th>SEXE</th></tr></thead>";
-
-    for(var i=0; i<taille; i++) {
-        var unPatient = tabPatients[i];
-        var dossier = unPatient.getElementsByTagName('dossier')[0].firstChild.nodeValue;
-        var nom = unPatient.getElementsByTagName('nom')[0].firstChild.nodeValue;
-        var prenom = unPatient.getElementsByTagName('prenom')[0].firstChild.nodeValue;
-        var annee = unPatient.getElementsByTagName('naissance')[0].firstChild.nodeValue;
-        var mois = unPatient.getElementsByTagName('naissance')[1].firstChild.nodeValue;
-        var jour = unPatient.getElementsByTagName('naissance')[2].firstChild.nodeValue;
-        var sexe = unPatient.getElementsByTagName('sexe')[0].firstChild.nodeValue;
-        rep += "<tr><td>" + dossier + "</td><td>" + nom + "</td><td>" + prenom + "</td><td>"
-            + annee + "</td><td>" + mois + "</td><td>" + jour + "</td><td>" + sexe + "</td></tr>";
-    }
-
-    rep += "</table>";
-    document.getElementById('contenu').innerHTML = rep;
-}
-*/
+    document.getElementById('contenu').appendChild(container);
+    container.appendChild(tableau);
+}*/
