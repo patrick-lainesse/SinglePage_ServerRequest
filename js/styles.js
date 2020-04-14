@@ -41,10 +41,12 @@ const styleCreerDivSelect = () => {
 dans l'option "Hospitalisations par établissement et par spécialité */
 const styleAfficherHopital = () => {
 
+    // créations de div pour encadrer l'affichage dans un style material design
     let contenu = document.getElementById('contenu');
     let centre = document.createElement('div');
     let row = document.createElement('div');
 
+    // création d'un div différent pour ajouter une couleur différente à chaque case d'information de l'établissement
     let etabDiv = document.createElement('div');
     let nomDiv = document.createElement('div');
     let adresseDiv = document.createElement('div');
@@ -52,11 +54,11 @@ const styleAfficherHopital = () => {
     let telephoneDiv = document.createElement('div');
 
     // ajout des id pour pouvoir les récupérer dans d'autres fonctions
-    etabDiv.setAttribute('id', 'etabDiv');
-    nomDiv.setAttribute('id', 'nomDiv');
-    adresseDiv.setAttribute('id', 'adresseDiv');
-    cPostalDiv.setAttribute('id', 'cPostalDiv');
-    telephoneDiv.setAttribute('id', 'telephoneDiv');
+    etabDiv.setAttribute('id', 'établissement');
+    nomDiv.setAttribute('id', 'nom');
+    adresseDiv.setAttribute('id', 'adresse');
+    cPostalDiv.setAttribute('id', 'téléphone');
+    telephoneDiv.setAttribute('id', 'code_postal');
 
     // ajout des styles css
     centre.classList.add('center-text');

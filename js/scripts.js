@@ -100,7 +100,8 @@ function charger_select(identifiant) {
             break;
         case 'établissements':
             menu.setAttribute('id', 'établissements');
-            menu.setAttribute('onChange', 'charger_select("spécialités")');
+            //menu.setAttribute('onChange', 'charger_select("spécialités")');
+            menu.setAttribute('onChange', 'afficherHopital()');
             tableauXML = xmlHopitaux.getElementsByTagName('hopital');
             break;
         case 'spécialités':
@@ -165,13 +166,11 @@ function charger_select(identifiant) {
 
 // vérifie si l'option fournie en paramètre existe déjà dans le menu fourni en paramètre
 function option_existe (cherche, menu) {
-    var optionExiste = false,
+    let optionExiste = false,
         optionsLength = menu.length;
 
-    while (optionsLength--)
-    {
-        if (menu.options[optionsLength].value.toUpperCase() === cherche.toUpperCase())
-        {
+    while (optionsLength--) {
+        if (menu.options[optionsLength].value.toUpperCase() === cherche.toUpperCase()) {
             optionExiste = true;
             break;
         }
@@ -179,8 +178,28 @@ function option_existe (cherche, menu) {
     return optionExiste;
 }
 
+/* Fonction qui affiche les informations de l'élément sélectionné de la liste des établissements, pour lesquel une liste
+de spécialités s'affichent */
 function afficherHopital() {
 
+    let select = document.getElementById('établissements').options;
+    let choixHopital = select[select.selectedIndex].id;
+    let tableauXML = xmlHopitaux.getElementsByTagName('hopital');
+
+    styleAfficherHopital();
+
+    for(let i=0; i<tableauXML.length; i++) {
+        let objet = tableauXML[i];
+
+        if(objet.getElementsByTagName('établissement')[0].firstChild.nodeValue == choixHopital) {
+
+            for(let info of objet.getElementsByTagName('*')) {
+                let texte = majuscule(info.nodeName) + " : <br>" + info.firstChild.nodeValue;
+                let div = document.getElementById(info.nodeName);
+                div.innerHTML = texte;
+            }
+        }
+    }
 }
 
 /*<div class="center-text">
