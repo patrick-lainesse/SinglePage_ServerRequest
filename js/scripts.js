@@ -88,6 +88,7 @@ function afficherTableau(elem) {
 
 function charger_select(identifiant) {
 
+    let contenu = document.getElementById('contenu');
     let menu = document.createElement('select');
     let tableauXML;
 
@@ -107,6 +108,7 @@ function charger_select(identifiant) {
         case 'spécialités':
             let menuHopital = document.getElementById('établissements').options;
             var choixHopital = menuHopital[menuHopital.selectedIndex].id;
+            var infosHopital = document.getElementById('infosHopital');
             menu.setAttribute('id', 'spécialités');
             menu.setAttribute('onChange', 'afficherTableau("spécialités")');
             tableauXML = xmlHopitaux.getElementsByTagName('hospitalisation');
@@ -117,6 +119,9 @@ function charger_select(identifiant) {
     // styleCreerDivSelect() et l'obtention d'une référence sur l'emplacement du select, car cette fonction efface
     // le contenu de la section "contenu".
     styleCreerDivSelect();
+    if(identifiant === 'spécialités') {
+        contenu.insertBefore(infosHopital, contenu.childNodes[0]);
+    }
     let divSelect = document.getElementById('divSelect');
 
     // créer des options selon le menu select que l'on cherche à créer
@@ -179,7 +184,7 @@ function option_existe (cherche, menu) {
 }
 
 /* Fonction qui affiche les informations de l'élément sélectionné de la liste des établissements, pour lesquel une liste
-de spécialités s'affichent */
+de spécialités s'affichera ensuite */
 function afficherHopital() {
 
     let select = document.getElementById('établissements').options;
@@ -193,32 +198,28 @@ function afficherHopital() {
 
         if(objet.getElementsByTagName('établissement')[0].firstChild.nodeValue == choixHopital) {
 
-            for(let info of objet.getElementsByTagName('*')) {
+            for(let info of objet.children) {
                 let attribut = info.nodeName;
-                let valeur = info.firstChild.nodeValue;
+                let valeur = mefTableau(attribut, choixHopital);
+                if(valeur === "défaut") {
+                    valeur = info.firstChild.nodeValue;
+                }
 
+                if(attribut === "code_postal") {
+                    texte = "Code postal" + " : <br>" + valeur;
+                } else if(attribut === "adresse") {
+                    texte = majuscule(attribut) + " : " + valeur;
+                } else {
+                    texte = majuscule(attribut) + " : <br>" + valeur;
+                }
 
-                //let texte = attribut + " : <br>" + valeur;
-                //let texte = majuscule(info.nodeName) + " : <br>" + info.firstChild.nodeValue;
-                let texte = majuscule(info.nodeName) + " : <br>" + corrigerTableau(attribut, choixHopital);
 
                 let div = document.getElementById(info.nodeName);
                 div.innerHTML = texte;
             }
         }
     }
+
+    charger_select("spécialités");
 }
-
-/*<div class="center-text">
-<!-- endroit où iront les infos de l'hôpital sélectionné -->
-<div class="row padding-top10 center-text">
-
-    <div class="col s2 offset-s1 red">Établissement:<br>2320</div>
-<div class="col s2 orange">Nom:<br>Hôpital Nord</div>
-<div class="col s2 yellow">Adresse: 7562, rue du Souvenir, Nordville, Qc</div>
-<div class="col s2 green">Code postal:<br>J4R 2Z5</div>
-<div class="col s2 blue">Téléphone:<br>(450) 222-3333</div>
-
-</div>
-</div>*/
 

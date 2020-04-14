@@ -54,6 +54,7 @@ const styleAfficherHopital = () => {
     let telephoneDiv = document.createElement('div');
 
     // ajout des id pour pouvoir les récupérer dans d'autres fonctions
+    centre.setAttribute('id', 'infosHopital');
     etabDiv.setAttribute('id', 'établissement');
     nomDiv.setAttribute('id', 'nom');
     adresseDiv.setAttribute('id', 'adresse');
