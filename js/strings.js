@@ -30,3 +30,20 @@ const texteOptionPatients = dossier => {
 
     return texte;
 };
+
+// fonction qui retourne le texte des options du menu select en format: 1234 - Centre hospitalier Sud
+const texteOptionHopital = codeEtablissement => {
+
+    let tableauXML = xmlHopitaux.getElementsByTagName('hopital');
+    var texte;
+
+    for(let i=0; i<tableauXML.length; i++) {
+        let objet = tableauXML[i];
+
+        if(objet.getElementsByTagName('établissement')[0].firstChild.nodeValue == codeEtablissement) {
+            texte = objet.getElementsByTagName('établissement')[0].firstChild.nodeValue + " - " + objet.getElementsByTagName('nom')[0].firstChild.nodeValue;
+        }
+    }
+
+    return texte;
+};

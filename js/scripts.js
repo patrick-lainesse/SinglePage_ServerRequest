@@ -96,10 +96,20 @@ function charger_select(identifiant) {
 
     // créer un select selon l'option de la page qui a été sélectionnée
     switch (identifiant) {
-        case 'nom':
-            menu.setAttribute('id', 'patient');
+        case 'patients':
+            menu.setAttribute('id', 'patients');
             menu.setAttribute('onChange', 'afficherTableau("patient")');
             tableauXML = xmlHopitaux.getElementsByTagName('patient');
+            break;
+        case 'établissements':
+            menu.setAttribute('id', 'établissements');
+            menu.setAttribute('onChange', 'charger_select("spécialités")');
+            tableauXML = xmlHopitaux.getElementsByTagName('hopital');
+            break;
+        case 'spécialités':
+            menu.setAttribute('id', 'spécialités');
+            menu.setAttribute('onChange', 'afficherTableau("spécialités")');
+            tableauXML = xmlHopitaux.getElementsByTagName('hospitalisation');
             break;
     }
 
@@ -107,11 +117,31 @@ function charger_select(identifiant) {
     for(let i=0; i<tableauXML.length; i++) {
         let objet = tableauXML[i];
         let option = document.createElement('option');
-        let dossier = objet.getElementsByTagName('dossier')[0].firstChild.nodeValue;
 
-        option.setAttribute('id', dossier);
-        option.appendChild(document.createTextNode(texteOptionPatients(dossier)));
-        menu.appendChild(option);
+        switch (identifiant) {
+            case 'patients':
+                let dossier = objet.getElementsByTagName('dossier')[0].firstChild.nodeValue;
+                option.setAttribute('id', dossier);
+                option.appendChild(document.createTextNode(texteOptionPatients(dossier)));
+                menu.appendChild(option);
+                break;
+            case 'établissements':
+                let etablissement = objet.getElementsByTagName('établissement')[0].firstChild.nodeValue;
+                option.setAttribute('id', etablissement);
+                option.appendChild(document.createTextNode(texteOptionHopital(etablissement)));
+                menu.appendChild(option);
+                break;
+            case 'spécialités':
+                let specialite = objet.getElementsByTagName('spécialité')[0].firstChild.nodeValue;
+                option.setAttribute('id', specialite);
+                option.appendChild(document.createTextNode(majuscule(specialite)));
+                menu.appendChild(option);
+                break;
+            default:
+                alert("Dû à des effectifs réduits en cette période de pandémie, l'option sélectionnée n'a pu s'afficher correctement.");
+                location.reload();
+                break;
+        }
     }
 /*
     // vider l'emplacement au cas où il y a déjà un tableau affiché ???? il faut préalablement récupérer le select s'il y en a un, donc ID pour ce select ????
