@@ -98,72 +98,60 @@
         <hopital>
             <établissement>1234</établissement>
             <nom>Centre hospitalier Sud</nom>
-            <adresse>
-                <numéro>1234</numéro>
-                <rue>boul. Sud</rue>
-                <ville>Montréal</ville>
-                <province>Qc</province>
-            </adresse>
+            <adresse>1234</adresse>
+            <adresse>boul. Sud</adresse>
+            <adresse>Montréal</adresse>
+            <adresse>Qc</adresse>
             <téléphone>5141231234</téléphone>
             <code_postal>H2M3Y6</code_postal>
         </hopital>
         <hopital>
             <établissement>2346</établissement>
             <nom>Hôpital Nord</nom>
-            <adresse>
-                <numéro>7562</numéro>
-                <rue>rue du Souvenir</rue>
-                <ville>Nordville</ville>
-                <province>Qc</province>
-            </adresse>
+            <adresse>7562</adresse>
+            <adresse>rue du Souvenir</adresse>
+            <adresse>Nordville</adresse>
+            <adresse>Qc</adresse>
             <téléphone>4502223333</téléphone>
             <code_postal>J4R2Z5</code_postal>
         </hopital>
         <hopital>
             <établissement>3980</établissement>
             <nom>Hôpital Centre</nom>
-            <adresse>
-                <numéro>4637</numéro>
-                <rue>boul. de l&#x27;Église</rue>
-                <ville>Montréal</ville>
-                <province>Qc</province>
-            </adresse>
+            <adresse>4637</adresse>
+            <adresse>boul. de l&#x27;Église</adresse>
+            <adresse>Montréal</adresse>
+            <adresse>Qc</adresse>
             <téléphone>5141235678</téléphone>
             <code_postal>H3J4K8</code_postal>
         </hopital>
         <hopital>
             <établissement>4177</établissement>
             <nom>Centre hospitalier Est</nom>
-            <adresse>
-                <numéro>12</numéro>
-                <rue>rue Bernard</rue>
-                <ville>Repentigny</ville>
-                <province>Qc</province>
-            </adresse>
+            <adresse>12</adresse>
+            <adresse>rue Bernard</adresse>
+            <adresse>Repentigny</adresse>
+            <adresse>Qc</adresse>
             <téléphone>4505892345</téléphone>
             <code_postal>J8R3K5</code_postal>
         </hopital>
         <hopital>
             <établissement>7306</établissement>
             <nom>Hôpital du salut</nom>
-            <adresse>
-                <numéro>11</numéro>
-                <rue>rue de la Rédemption</rue>
-                <ville>Saint-Basile</ville>
-                <province>Qc</province>
-            </adresse>
+            <adresse>11</adresse>
+            <adresse>rue de la Rédemption</adresse>
+            <adresse>Saint-Basile</adresse>
+            <adresse>Qc</adresse>
             <téléphone>4503456789</téléphone>
             <code_postal>J8H2O4</code_postal>
         </hopital>
         <hopital>
             <établissement>8895</établissement>
             <nom>Dernier recours</nom>
-            <adresse>
-                <numéro>999</numéro>
-                <rue>rue Saint-Pierre</rue>
-                <ville>Longueuil</ville>
-                <province>Qc</province>
-            </adresse>
+            <adresse>999</adresse>
+            <adresse>rue Saint-Pierre</adresse>
+            <adresse>Longueuil</adresse>
+            <adresse>Qc</adresse>
             <téléphone>4505554741</téléphone>
             <code_postal>J7B3J6</code_postal>
         </hopital>

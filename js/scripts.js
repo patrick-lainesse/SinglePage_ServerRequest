@@ -100,7 +100,7 @@ function charger_select(identifiant) {
             break;
         case 'établissements':
             menu.setAttribute('id', 'établissements');
-            //menu.setAttribute('onChange', 'charger_select("spécialités")');
+            //menu.setAttribute('onChange', 'charger_select("spécialités")');       ???
             menu.setAttribute('onChange', 'afficherHopital()');
             tableauXML = xmlHopitaux.getElementsByTagName('hopital');
             break;
@@ -194,7 +194,14 @@ function afficherHopital() {
         if(objet.getElementsByTagName('établissement')[0].firstChild.nodeValue == choixHopital) {
 
             for(let info of objet.getElementsByTagName('*')) {
-                let texte = majuscule(info.nodeName) + " : <br>" + info.firstChild.nodeValue;
+                let attribut = info.nodeName;
+                let valeur = info.firstChild.nodeValue;
+
+
+                //let texte = attribut + " : <br>" + valeur;
+                //let texte = majuscule(info.nodeName) + " : <br>" + info.firstChild.nodeValue;
+                let texte = majuscule(info.nodeName) + " : <br>" + corrigerTableau(attribut, choixHopital);
+
                 let div = document.getElementById(info.nodeName);
                 div.innerHTML = texte;
             }

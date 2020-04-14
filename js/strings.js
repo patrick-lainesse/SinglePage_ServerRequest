@@ -11,6 +11,52 @@ const erreur = () => alert("Dû à des effectifs réduits en cette période de p
 // Pour mettre la première lettre d'un mot en majuscule
 const majuscule = mot => mot.charAt(0).toUpperCase() + mot.slice(1);
 
+/* ==============================================================================================
+                              MISE EN FORME DU TABLEAU XML
+============================================================================================== */
+
+const corrigerTableau = (tag, cle) => {
+
+    let tableauXML;
+    var texte = "";
+    /*
+
+    for(let i=0; i<tableauXML.length; i++) {
+        let objet = tableauXML[i];
+
+        if(objet.getElementsByTagName('dossier')[0].firstChild.nodeValue == dossier) {
+            texte = objet.getElementsByTagName('dossier')[0].firstChild.nodeValue + " (" + objet.getElementsByTagName('prénom')[0].firstChild.nodeValue
+                + " " + objet.getElementsByTagName('nom')[0].firstChild.nodeValue + ")";
+        }
+    }
+
+    return texte;*/
+
+    switch (tag) {
+        case "naissance":
+            break;
+        case "adresse":
+            tableauXML = xmlHopitaux.getElementsByTagName('hopital');
+
+            for(let i=0; i<tableauXML.length; i++) {
+                let objet = tableauXML[i];
+
+                if (objet.getElementsByTagName('établissement')[0].firstChild.nodeValue == cle) {
+                    let adresse = objet.getElementsByTagName('adresse')[0];
+                    let tags = adresse.getElementsByTagName('*');
+                    for(let i=0; i<tags.length-1; i++) {
+                        texte += tags[i].firstChild.nodeValue + ", ";
+                    }
+                    texte += tags[tags.length-1].firstChild.nodeValue;
+                }
+            }
+            break;
+        default: texte = "défaut";
+
+    }
+    return texte;
+
+};
 
 /* ==============================================================================================
                                     MENU SELECT
