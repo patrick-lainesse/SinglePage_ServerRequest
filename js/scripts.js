@@ -88,11 +88,16 @@ function afficherTableau(elem) {
 
 function charger_select(identifiant) {
 
-    let container = document.createElement('div');
+    let contenu = document.getElementById('contenu');
+    let row = document.createElement('div');
+    let inputF = document.createElement('div');
     let menu = document.createElement('select');
     let tableauXML;
 
-    container.classList.add('container');
+    row.classList.add('row');
+    inputF.classList.add('input-field');
+    inputF.classList.add('col');
+    inputF.classList.add('s3');
 
     switch (identifiant) {
         case 'nom':
@@ -105,30 +110,32 @@ function charger_select(identifiant) {
     for(let i=0; i<tableauXML.length; i++) {
         let objet = tableauXML[i];
         let option = document.createElement('option');
-        option.setAttribute('id', tableauXML[objet].dossier);
+        option.setAttribute('id', objet.getElementsByTagName('dossier')[0].firstChild.nodeValue);
         // le texte des options sous le format: 4 (Patrick Lainesse) ??? rendu ici????
-        let texte = tableauXML[objet].dossier + " (" + tableauXML[objet].prenom;
+        let texte = objet.getElementsByTagName('dossier')[0].firstChild.nodeValue + " (" + objet.getElementsByTagName('prénom')[0].firstChild.nodeValue;
         option.appendChild(document.createTextNode(texte));
         menu.appendChild(option);
     }
-    container.appendChild(menu);
+    row.appendChild(inputF);
+    inputF.appendChild(menu);
 
-/*        let tr = document.createElement('tr');
-
-        var tags = objet.getElementsByTagName('*');
-
-        for(let j=0; j<tags.length; j++) {
-            let attribut = tags[j].firstChild.nodeValue;
-
-            let td = document.createElement('td');
-            td.appendChild(document.createTextNode(attribut));
-            tr.appendChild(td);
-        }
-
-        body.appendChild(tr);
+    // vider l'emplacement au cas où il y a déjà un tableau affiché
+    while(contenu.firstChild) {
+        contenu.removeChild(contenu.firstChild);
     }
-    tableau.appendChild(body);*/
+    contenu.appendChild(row);
 
+    //document.getElementById('contenu').appendChild(row);
 
-    document.getElementById('contenu').appendChild(container);
+/*<div class="row">
+        <div class="input-field col s3">
+        <select>
+        <option value="" disabled selected>Choose your option</option>
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+    <option value="3">Option 3</option>
+    </select>
+    <label>Materialize Select</label>
+    </div>
+    </div>*/
 }
