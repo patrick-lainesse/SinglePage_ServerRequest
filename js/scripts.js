@@ -88,18 +88,13 @@ function afficherTableau(elem) {
 
 function charger_select(identifiant) {
 
-    let contenu = document.getElementById('contenu');
-    let row = document.createElement('div');
-    let inputF = document.createElement('div');
     let menu = document.createElement('select');
     let tableauXML;
 
-    row.classList.add('row');
-    inputF.classList.add('input-field');
-    inputF.classList.add('col');
-    inputF.classList.add('s3');
+    styleCreerDivSelect();
+    let divSelect = document.getElementById('divSelect');
 
-
+    // créer un select selon l'option de la page qui a été sélectionnée
     switch (identifiant) {
         case 'nom':
             menu.setAttribute('id', 'patient');
@@ -108,26 +103,23 @@ function charger_select(identifiant) {
             break;
     }
 
+    // créer des options selon le menu select que l'on cherche à créer
     for(let i=0; i<tableauXML.length; i++) {
         let objet = tableauXML[i];
         let option = document.createElement('option');
         let dossier = objet.getElementsByTagName('dossier')[0].firstChild.nodeValue;
-        option.setAttribute('id', dossier);
 
+        option.setAttribute('id', dossier);
         option.appendChild(document.createTextNode(texteOptionPatients(dossier)));
         menu.appendChild(option);
     }
-
-    row.appendChild(inputF);
-    inputF.appendChild(menu);
-
+/*
     // vider l'emplacement au cas où il y a déjà un tableau affiché ???? il faut préalablement récupérer le select s'il y en a un, donc ID pour ce select ????
     while(contenu.firstChild) {
         contenu.removeChild(contenu.firstChild);
-    }
-    contenu.appendChild(row);
+    }*/
 
-    // appliquer un style material design au select
-    $('select').formSelect();
-    $(".dropdown-content>li>span").css("color", "#660066");
+    // ajouter les éléments au DOM de la page
+    divSelect.appendChild(menu);
+    styleSelect();
 }
