@@ -5,6 +5,9 @@ Ensemble des fonctions javascript qui effectuent des manipulations sur les Strin
 la transformation des textes des tableaux XML en texte affiché à l'écran
 */
 
+// Afficher un message d'erreur
+const erreur = () => alert("Dû à des effectifs réduits en cette période de pandémie, l'option sélectionnée n'a pu s'afficher correctement.");
+
 // Pour mettre la première lettre d'un mot en majuscule
 const majuscule = mot => mot.charAt(0).toUpperCase() + mot.slice(1);
 
@@ -13,7 +16,7 @@ const majuscule = mot => mot.charAt(0).toUpperCase() + mot.slice(1);
                                     MENU SELECT
 ============================================================================================== */
 
-// fonction qui retourne le texte des options du menu select en format: 4 (Patrick Lainesse)
+// Fonction qui retourne le texte des options du menu select en format: 4 (Patrick Lainesse)
 const texteOptionPatients = dossier => {
 
     let tableauXML = xmlHopitaux.getElementsByTagName('patient');
@@ -31,7 +34,7 @@ const texteOptionPatients = dossier => {
     return texte;
 };
 
-// fonction qui retourne le texte des options du menu select en format: 1234 - Centre hospitalier Sud
+// Fonction qui retourne le texte des options du menu select en format: 1234 - Centre hospitalier Sud
 const texteOptionHopital = codeEtablissement => {
 
     let tableauXML = xmlHopitaux.getElementsByTagName('hopital');
