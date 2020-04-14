@@ -1,9 +1,32 @@
+/*
+strings.js
+
+Ensemble des fonctions javascript qui effectuent des manipulations sur les String pour faciliter
+la transformation des textes des tableaux XML en texte affiché à l'écran
+*/
+
 // Pour mettre la première lettre d'un mot en majuscule
 const majuscule = mot => mot.charAt(0).toUpperCase() + mot.slice(1);
 
-// le texte des options sous le format: 4 (Patrick Lainesse)
-const optionPatient = dossier => {
-    let patients = xmlHopitaux.getElementsByTagName('patient');
-    let option = document.createElement('option');
 
+/* ==============================================================================================
+                                    MENU SELECT
+============================================================================================== */
+
+// fonction qui retourne le texte des options du menu select en format: 4 (Patrick Lainesse)
+const texteOptionPatients = dossier => {
+
+    let tableauXML = xmlHopitaux.getElementsByTagName('patient');
+    var texte;
+
+    for(let i=0; i<tableauXML.length; i++) {
+        let objet = tableauXML[i];
+
+        if(objet.getElementsByTagName('dossier')[0].firstChild.nodeValue == dossier) {
+            texte = objet.getElementsByTagName('dossier')[0].firstChild.nodeValue + " (" + objet.getElementsByTagName('prénom')[0].firstChild.nodeValue
+            + " " + objet.getElementsByTagName('nom')[0].firstChild.nodeValue + ")";
+        }
+    }
+
+    return texte;
 };

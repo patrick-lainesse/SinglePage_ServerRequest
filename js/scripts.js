@@ -99,6 +99,7 @@ function charger_select(identifiant) {
     inputF.classList.add('col');
     inputF.classList.add('s3');
 
+
     switch (identifiant) {
         case 'nom':
             menu.setAttribute('id', 'patient');
@@ -110,32 +111,23 @@ function charger_select(identifiant) {
     for(let i=0; i<tableauXML.length; i++) {
         let objet = tableauXML[i];
         let option = document.createElement('option');
-        option.setAttribute('id', objet.getElementsByTagName('dossier')[0].firstChild.nodeValue);
-        // le texte des options sous le format: 4 (Patrick Lainesse) ??? rendu ici????
-        let texte = objet.getElementsByTagName('dossier')[0].firstChild.nodeValue + " (" + objet.getElementsByTagName('prénom')[0].firstChild.nodeValue;
-        option.appendChild(document.createTextNode(texte));
+        let dossier = objet.getElementsByTagName('dossier')[0].firstChild.nodeValue;
+        option.setAttribute('id', dossier);
+
+        option.appendChild(document.createTextNode(texteOptionPatients(dossier)));
         menu.appendChild(option);
     }
+
     row.appendChild(inputF);
     inputF.appendChild(menu);
 
-    // vider l'emplacement au cas où il y a déjà un tableau affiché
+    // vider l'emplacement au cas où il y a déjà un tableau affiché ???? il faut préalablement récupérer le select s'il y en a un, donc ID pour ce select ????
     while(contenu.firstChild) {
         contenu.removeChild(contenu.firstChild);
     }
     contenu.appendChild(row);
 
-    //document.getElementById('contenu').appendChild(row);
-
-/*<div class="row">
-        <div class="input-field col s3">
-        <select>
-        <option value="" disabled selected>Choose your option</option>
-    <option value="1">Option 1</option>
-    <option value="2">Option 2</option>
-    <option value="3">Option 3</option>
-    </select>
-    <label>Materialize Select</label>
-    </div>
-    </div>*/
+    // appliquer un style material design au select
+    $('select').formSelect();
+    $(".dropdown-content>li>span").css("color", "#660066");
 }
