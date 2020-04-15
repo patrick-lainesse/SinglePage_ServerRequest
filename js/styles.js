@@ -28,11 +28,22 @@ const styleTableau = () => {
                                     MENU SELECT
 ============================================================================================== */
 
-// appliquer un style material design au select
+// Applique un style material design au select
 const styleSelect = () => {
     $('select').formSelect();
     $(".dropdown-content>li>span").css("color", "#d32f2f");
 };
+
+// ???? à régler, trouver comment faire un append sans le faire deux fois.
+/*const optionChoisir = identifiant => {
+
+    let menu = document.getElementById(identifiant);
+    let option = document.createElement("option");
+    let textNode = document.createTextNode("Choisir...");
+    option.classList.add('disabled', 'selected');
+    option.appendChild(textNode);
+    menu.appendChild(option);
+};*/
 
 // Fonction pour créer les div qui servent à encadrer l'élément select afin qu'il possède le style Material Design
 const styleCreerDivSelect = () => {
@@ -41,10 +52,7 @@ const styleCreerDivSelect = () => {
     let row = document.createElement('div');
     let inputF = document.createElement('div');
 
-    // vider l'emplacement au cas où il y a déjà un tableau affiché ???? il faut préalablement récupérer le select s'il y en a un, donc ID pour ce select ????
-    while(contenu.firstChild) {
-        contenu.removeChild(contenu.firstChild);
-    }
+    viderContenu();
 
     // application de styles
     row.classList.add('row');

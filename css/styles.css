@@ -46,6 +46,10 @@ main {
     text-align: left;
 }
 
+.padding-bot100 {
+    padding-bottom: 100px;
+}
+
 .paddingH {
     padding-left: 2em;
     padding-right: 2em;
