@@ -50,6 +50,7 @@ function afficherTableau(elem) {
 
     // sélection effectuée sur le select qui a déclenché ce tableau (si c'est le cas)
     let selection;
+    let id;
 
     if(elem === 'hosPatient') {
         console.log('hosPatient');
@@ -57,6 +58,12 @@ function afficherTableau(elem) {
         selection = select[select.selectedIndex].id;
         console.log(selection);
         elem = 'patient';
+    } else if(elem === 'spécialités') {
+        let select = document.getElementById('spécialités').options;
+        selection = select[select.selectedIndex].id;
+        id = document.getElementById('divEtablissement').getAttribute('value');
+        console.log(selection + " et id: " + id);
+        elem = 'hospitalisation';
     }
 
     let tableauXML = xmlHopitaux.getElementsByTagName(elem);
@@ -115,7 +122,7 @@ function afficherTableau(elem) {
         for(let info of objet.children) {
 
             // si la requête provient d'une sélection sur une liste select et que la sélection correspond à l'objet du tableau XML
-            if ((selection != null && selection === objet.getElementsByTagName('dossier')[0].firstChild.nodeValue) || selection == null) {
+            if ((selection != null && selection === objet.getElementsByTagName('dossier')[0].firstChild.nodeValue) || (objet.getElementsByTagName('établissement')[0].firstChild.nodeValue === id && selection != null && selection === objet.getElementsByTagName('spécialité')[0].firstChild.nodeValue) || selection == null) {
                 // ici, la clé permettra de faire la mise en forme du texte xml
                 let cle = "";
                 let attribut = info.nodeName;
