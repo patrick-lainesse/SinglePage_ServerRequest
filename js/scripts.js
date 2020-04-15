@@ -48,6 +48,17 @@ hospitalisations par patient. Le no de dossier est à 0 pour les trois première
 //function afficherTableau(elem, dossier, codeEtab, spec) {
 function afficherTableau(elem) {
 
+    // sélection effectuée sur le select qui a déclenché ce tableau (si c'est le cas)
+    let selection;
+
+    if(elem === 'hosPatient') {
+        console.log('hosPatient');
+        let select = document.getElementById('patients').options;
+        selection = select[select.selectedIndex].id;
+        console.log(selection);
+        elem = 'patient';
+    }
+
     let tableauXML = xmlHopitaux.getElementsByTagName(elem);
 
 
@@ -102,41 +113,45 @@ function afficherTableau(elem) {
         /*for(let j=0; j<tags.length; j++) {
             let attribut = tags[j].firstChild.nodeValue;*/
         for(let info of objet.children) {
-            let attribut = info.nodeName;
-            let cle = "";
 
-            switch (elem) {
-                case 'patient':
-                    cle = objet.getElementsByTagName('dossier')[0].firstChild.nodeValue;
-                    break;
-                case 'hopital':
-                    cle = objet.getElementsByTagName('établissement')[0].firstChild.nodeValue;
-                    break;
-                case 'hospitalisation':
-                    cle = objet.getAttribute('id');
-                    break;
+            // si la requête provient d'une sélection sur une liste select et que la sélection correspond à l'objet du tableau XML
+            if ((selection != null && selection === objet.getElementsByTagName('dossier')[0].firstChild.nodeValue) || selection == null) {
+                // ici, la clé permettra de faire la mise en forme du texte xml
+                let cle = "";
+                let attribut = info.nodeName;
+
+                switch (elem) {
+                    case 'patient':
+                        cle = objet.getElementsByTagName('dossier')[0].firstChild.nodeValue;
+                        break;
+                    case 'hopital':
+                        cle = objet.getElementsByTagName('établissement')[0].firstChild.nodeValue;
+                        break;
+                    case 'hospitalisation':
+                        cle = objet.getAttribute('id');
+                        break;
                     // manque les deux derniers cas ????
-            }
+                }
 
-            //let resultNode = doc.querySelector("[id=" + id + "]");
+                //let resultNode = doc.querySelector("[id=" + id + "]");
 
-            let valeur = mefTableau(attribut, cle);
-            if(valeur === "défaut") {
-                valeur = info.firstChild.nodeValue;
-            }
+                let valeur = mefTableau(attribut, cle);
+                if (valeur === "défaut") {
+                    valeur = info.firstChild.nodeValue;
+                }
 
-            let td = document.createElement('td');
-            //td.appendChild(document.createTextNode(attribut));
-            td.appendChild(document.createTextNode(valeur));
-            tr.appendChild(td);
-        }
-
+                let td = document.createElement('td');
+                //td.appendChild(document.createTextNode(attribut));
+                td.appendChild(document.createTextNode(valeur));
+                tr.appendChild(td);
+            }   // fin du if correspond à la sélection du sélect
+        }   // fin du parcours des attributs d'un objet du tableau XML (deuxième boucle for)
         body.appendChild(tr);
-    }
+    }   // fin du parcours des objets du tableau XML (première boucle for)
     tableau.appendChild(body);
 
     //document.getElementById('contenu').appendChild(container);
-    //container.appendChild(tableau);
+    //container.appendChild(tableau);       ???
 }
 
 // Fonction qui fait afficher le menu select selon le choix l'ayant fait apparaître
@@ -145,25 +160,23 @@ function charger_select(identifiant) {
     let contenu = document.getElementById('contenu');
     let menu = document.createElement('select');
     let tableauXML;
+    let divSelect;
 
     // créer un select selon l'option de la page qui a été sélectionnée
     switch (identifiant) {
         case 'patients':
-            menu.setAttribute('id', 'patients');
-            menu.setAttribute('onChange', 'afficherTableau("patient")');
+            menu.setAttribute('onChange', 'afficherTableau("hosPatient")');
             tableauXML = xmlHopitaux.getElementsByTagName('patient');
             break;
         case 'établissements':
-            menu.setAttribute('id', 'établissements');
             menu.setAttribute('onChange', 'afficherHopital()');
             tableauXML = xmlHopitaux.getElementsByTagName('hopital');
             break;
         case 'spécialités':
             let menuHopital = document.getElementById('établissements').options;
-            var choixHopital = menuHopital[menuHopital.selectedIndex].id;
             // récupération de la rangée où se sont affichées les informations de l'établissement sélectionné
+            var choixHopital = menuHopital[menuHopital.selectedIndex].id;
             var infosHopital = document.getElementById('infosHopital');
-            menu.setAttribute('id', 'spécialités');
             menu.setAttribute('onChange', 'afficherTableau("spécialités")');
             tableauXML = xmlHopitaux.getElementsByTagName('hospitalisation');
             break;
@@ -171,9 +184,10 @@ function charger_select(identifiant) {
             erreur();
             location.reload();
     }
+    menu.setAttribute('id', identifiant);
 
-    // création des différents div pour encadrer l'affichage du select et élimination des éléments de la page (tableau précédent,
-    // autres menus dans un select)
+    /* création des différents div pour encadrer l'affichage du select et élimination des éléments de la page (tableau précédent,
+    autres menus dans un select) */
     styleCreerDivSelect();
 
     // réaffichage des infos de l'établissement sélectionné dans le cas du select "choix des spécialités"
@@ -182,9 +196,10 @@ function charger_select(identifiant) {
     }
 
     // on récupère l'emplacement où faire afficher le select à créer
-    let divSelect = document.getElementById('divSelect');
+    divSelect = document.getElementById('divSelect');
 
-    // ajouter les options selon le menu select que l'on cherche à créer
+    /* ajouter les options selon le menu select que l'on cherche à créer, le id sera une clé primaire (ou une partie de la clé,
+     dans le cas de 'spécialité') qui servira à afficher le tableau correspondant */
     for(let i=0; i<tableauXML.length; i++) {
         // un objet est une entrée dans le tableau xml, soit un patient, un établissement ou une hospitalisation
         let objet = tableauXML[i];
@@ -216,9 +231,8 @@ function charger_select(identifiant) {
             default:
                 erreur();
                 location.reload();
-        }
+        } // fin du switch
     }
-
     // ajouter les éléments au DOM de la page
     divSelect.appendChild(menu);
     styleSelect();
@@ -254,26 +268,32 @@ function afficherHopital() {
         if(objet.getElementsByTagName('établissement')[0].firstChild.nodeValue == choixHopital) {
 
             for(let info of objet.children) {
+                let div;
                 let attribut = info.nodeName;
                 let valeur = mefTableau(attribut, choixHopital);
-                if(valeur === "défaut") {
+                if (valeur === "défaut") {
                     valeur = info.firstChild.nodeValue;
                 }
 
-                if(attribut === "code_postal") {
+                if (attribut === "code_postal") {
                     texte = "Code postal" + " : <br>" + valeur;
-                } else if(attribut === "adresse") {
+                } else if (attribut === "adresse") {
                     texte = majuscule(attribut) + " : " + valeur;
                 } else {
                     texte = majuscule(attribut) + " : <br>" + valeur;
                 }
 
-                let div = document.getElementById(info.nodeName);
+                div = document.getElementById(info.nodeName);
                 div.innerHTML = texte;
+
+                // attribution d'une valeur et d'un id au div de l'établissement, car il s'agira d'une clé pour l'affichage du tableau
+                if (attribut === 'établissement') {
+                    div.setAttribute('id', 'divEtablissement');
+                    div.setAttribute('value', valeur);
+                }
             }
         }
     }
-
     charger_select("spécialités");
 }
 
