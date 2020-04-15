@@ -59,11 +59,11 @@ function afficherTableau(elem) {
     viderContenu(); // attention au cas spécialité! Peut-être mettre plus à la fin????
 
     styleTableau();
-    let container = document.getElementById('container');
+    //let container = document.getElementById('container');
     let tableau = document.getElementById('tableau');
 
     // afficher l'en-tête du tableau
-    //for(let colonne of tableauXML[0].getElementsByTagName('*')) {
+    //for(let colonne of tableauXML[0].getElementsByTagName('*')) {     ???
     for(let colonne of tableauXML[0].children) {
         let en_tete = document.createElement('th');
         let attribut = majuscule(colonne.nodeName);
@@ -93,20 +93,41 @@ function afficherTableau(elem) {
             texte = majuscule(attribut) + " : <br>" + valeur;
         }*/
 
-
-
     for(let i=0; i<tableauXML.length; i++) {
-        let patient = tableauXML[i];
-
+        let objet = tableauXML[i];
         let tr = document.createElement('tr');
 
-        var tags = patient.getElementsByTagName('*');
+        //var tags = objet.getElementsByTagName('*');
 
-        for(let j=0; j<tags.length; j++) {
-            let attribut = tags[j].firstChild.nodeValue;
+        /*for(let j=0; j<tags.length; j++) {
+            let attribut = tags[j].firstChild.nodeValue;*/
+        for(let info of objet.children) {
+            let attribut = info.nodeName;
+            let cle = "";
+
+            switch (elem) {
+                case 'patient':
+                    cle = objet.getElementsByTagName('dossier')[0].firstChild.nodeValue;
+                    break;
+                case 'hopital':
+                    cle = objet.getElementsByTagName('établissement')[0].firstChild.nodeValue;
+                    break;
+                case 'hospitalisation':
+                    cle = objet.getAttribute('id');
+                    break;
+                    // manque les deux derniers cas ????
+            }
+
+            //let resultNode = doc.querySelector("[id=" + id + "]");
+
+            let valeur = mefTableau(attribut, cle);
+            if(valeur === "défaut") {
+                valeur = info.firstChild.nodeValue;
+            }
 
             let td = document.createElement('td');
-            td.appendChild(document.createTextNode(attribut));
+            //td.appendChild(document.createTextNode(attribut));
+            td.appendChild(document.createTextNode(valeur));
             tr.appendChild(td);
         }
 

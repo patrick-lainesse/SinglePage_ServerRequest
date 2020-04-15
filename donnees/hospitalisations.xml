@@ -190,7 +190,7 @@
     </tabEtablissements>
 
     <tabHospitalisations>
-        <hospitalisation>
+        <hospitalisation id="1">
             <établissement>1234</établissement>
             <dossier>5</dossier>
             <admission>
@@ -205,7 +205,7 @@
             </sortie>
             <spécialité>médecine</spécialité>
         </hospitalisation>
-        <hospitalisation>
+        <hospitalisation id="2">
             <établissement>1234</établissement>
             <dossier>10</dossier>
             <admission>
@@ -220,7 +220,7 @@
             </sortie>
             <spécialité>chirurgie</spécialité>
         </hospitalisation>
-        <hospitalisation>
+        <hospitalisation id="3">
             <établissement>2346</établissement>
             <dossier>8</dossier>
             <admission>
@@ -235,7 +235,7 @@
             </sortie>
             <spécialité>médecine</spécialité>
         </hospitalisation>
-        <hospitalisation>
+        <hospitalisation id="4">
             <établissement>2346</établissement>
             <dossier>1</dossier>
             <admission>
@@ -250,7 +250,7 @@
             </sortie>
             <spécialité>orthopédie</spécialité>
         </hospitalisation>
-        <hospitalisation>
+        <hospitalisation id="5">
             <établissement>2346</établissement>
             <dossier>3</dossier>
             <admission>
@@ -265,7 +265,7 @@
             </sortie>
             <spécialité>médecine</spécialité>
         </hospitalisation>
-        <hospitalisation>
+        <hospitalisation id="6">
             <établissement>3980</établissement>
             <dossier>5</dossier>
             <admission>
@@ -280,7 +280,7 @@
             </sortie>
             <spécialité>médecine</spécialité>
         </hospitalisation>
-        <hospitalisation>
+        <hospitalisation id="7">
             <établissement>3980</établissement>
             <dossier>5</dossier>
             <admission>
@@ -295,7 +295,7 @@
             </sortie>
             <spécialité>médecine</spécialité>
         </hospitalisation>
-        <hospitalisation>
+        <hospitalisation id="8">
             <établissement>3980</établissement>
             <dossier>9</dossier>
             <admission>
@@ -310,7 +310,7 @@
             </sortie>
             <spécialité>orthopédie</spécialité>
         </hospitalisation>
-        <hospitalisation>
+        <hospitalisation id="9">
             <établissement>3980</établissement>
             <dossier>7</dossier>
             <admission>
@@ -325,7 +325,7 @@
             </sortie>
             <spécialité>chirurgie</spécialité>
         </hospitalisation>
-        <hospitalisation>
+        <hospitalisation id="10">
             <établissement>3980</établissement>
             <dossier>10</dossier>
             <admission>
@@ -340,7 +340,7 @@
             </sortie>
             <spécialité>chirurgie</spécialité>
         </hospitalisation>
-        <hospitalisation>
+        <hospitalisation id="11">
             <établissement>4177</établissement>
             <dossier>3</dossier>
             <admission>
@@ -355,7 +355,7 @@
             </sortie>
             <spécialité>médecine</spécialité>
         </hospitalisation>
-        <hospitalisation>
+        <hospitalisation id="12">
             <établissement>4177</établissement>
             <dossier>3</dossier>
             <admission>
@@ -370,7 +370,7 @@
             </sortie>
             <spécialité>orthopédie</spécialité>
         </hospitalisation>
-        <hospitalisation>
+        <hospitalisation id="13">
             <établissement>7306</établissement>
             <dossier>2</dossier>
             <admission>
