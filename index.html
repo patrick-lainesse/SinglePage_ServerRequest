@@ -48,11 +48,11 @@ Ressources utilisées:
         </ul>
     </div>
     <div class="nav-content">
-        <!--mettre en hide comme ce qui est en commentaire plus haut???-->
+        <!--mettre en hide comme ce qui est en commentaire plus haut??? // enlever les href???? -->
         <ul class="tabs tabs-transparent height-auto">
-            <li class="tab height-auto"><a class="waves-effect btn-flat green darken-4 nav-button"><i class="material-icons left">assignment_ind</i>Liste<br>des patients</a></li>
-            <li class="tab height-auto"><a class="waves-effect btn-flat light-green darken-2 nav-button" href="#test2"><i class="material-icons left">assignment</i>Liste des<br>établissements</a></li>
-            <li class="tab height-auto"><a class="waves-effect btn-flat amber darken-3 nav-button" href="#test3"><i class="material-icons left">airport_shuttle</i>Liste des</br>hospitalisations</a></li>
+            <li class="tab height-auto"><a class="waves-effect btn-flat green darken-4 nav-button" onclick="afficherTableau('patient');"><i class="material-icons left">assignment_ind</i>Liste<br>des patients</a></li>
+            <li class="tab height-auto"><a class="waves-effect btn-flat light-green darken-2 nav-button" href="#test2" onclick="afficherTableau('hopital');"><i class="material-icons left">assignment</i>Liste des<br>établissements</a></li>
+            <li class="tab height-auto"><a class="waves-effect btn-flat amber darken-3 nav-button" href="#test3" onclick="afficherTableau('hospitalisation');"><i class="material-icons left">airport_shuttle</i>Liste des</br>hospitalisations</a></li>
             <li class="tab height-auto"><a class="waves-effect btn-flat deep-orange darken-2 nav-button" href="#test4" onclick="charger_select('patients');"><i class="material-icons left">airline_seat_flat</i>Hospitalisations<br>par patient</a></li>
             <li class="tab height-auto"><a class="waves-effect btn-flat red darken-2 nav-button" href="#test5" onclick="charger_select('établissements');"><i class="material-icons left">people_outline</i>Hospitalisations par<br>établissement et par spécialité</a></li>
         </ul>
@@ -69,7 +69,6 @@ Ressources utilisées:
 </header>
 <main>
 
-    <input type="button" value="Lister" onclick="listePatients();">
     <!-- endroit où iront les infos de l'hôpital sélectionné -->
     <div id="contenu"></div>
 

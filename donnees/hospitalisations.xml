@@ -6,90 +6,110 @@
             <dossier>1</dossier>
             <nom>Léger</nom>
             <prénom>Émile</prénom>
-            <naissance>1917</naissance>
-            <naissance>3</naissance>
-            <naissance>26</naissance>
+            <naissance>
+                <année>1917</année>
+                <mois>3</mois>
+                <jour>26</jour>
+            </naissance>
             <sexe>M</sexe>
         </patient>
         <patient>
             <dossier>2</dossier>
             <nom>Bernard</nom>
             <prénom>Marie</prénom>
-            <naissance>1946</naissance>
-            <naissance>2</naissance>
-            <naissance>3</naissance>
+            <naissance>
+                <année>1946</année>
+                <mois>2</mois>
+                <jour>3</jour>
+            </naissance>
             <sexe>F</sexe>
         </patient>
         <patient>
             <dossier>3</dossier>
             <nom>Chartrand</nom>
             <prénom>Guy</prénom>
-            <naissance>1959</naissance>
-            <naissance>4</naissance>
-            <naissance>5</naissance>
+            <naissance>
+                <année>1959</année>
+                <mois>4</mois>
+                <jour>5</jour>
+            </naissance>
             <sexe>M</sexe>
         </patient>
         <patient>
             <dossier>4</dossier>
             <nom>Côté</nom>
             <prénom>André</prénom>
-            <naissance>1978</naissance>
-            <naissance>9</naissance>
-            <naissance>2</naissance>
+            <naissance>
+                <année>1978</année>
+                <mois>9</mois>
+                <jour>2</jour>
+            </naissance>
             <sexe>M</sexe>
         </patient>
         <patient>
             <dossier>5</dossier>
             <nom>Lavoie</nom>
             <prénom>Carole</prénom>
-            <naissance>1973</naissance>
-            <naissance>11</naissance>
-            <naissance>4</naissance>
+            <naissance>
+                <année>1973</année>
+                <mois>11</mois>
+                <jour>4</jour>
+            </naissance>
             <sexe>F</sexe>
         </patient>
         <patient>
             <dossier>6</dossier>
             <nom>Martin</nom>
             <prénom>Diane</prénom>
-            <naissance>1965</naissance>
-            <naissance>12</naissance>
-            <naissance>2</naissance>
+            <naissance>
+                <année>1965</année>
+                <mois>12</mois>
+                <jour>2</jour>
+            </naissance>
             <sexe>F</sexe>
         </patient>
         <patient>
             <dossier>7</dossier>
             <nom>Lacroix</nom>
             <prénom>Pauline</prénom>
-            <naissance>1956</naissance>
-            <naissance>1</naissance>
-            <naissance>25</naissance>
+            <naissance>
+                <année>1956</année>
+                <mois>1</mois>
+                <jour>25</jour>
+            </naissance>
             <sexe>F</sexe>
         </patient>
         <patient>
             <dossier>8</dossier>
             <nom>St-Jean</nom>
             <prénom>Arthur</prénom>
-            <naissance>1912</naissance>
-            <naissance>10</naissance>
-            <naissance>7</naissance>
+            <naissance>
+                <année>1912</année>
+                <mois>10</mois>
+                <jour>7</jour>
+            </naissance>
             <sexe>M</sexe>
         </patient>
         <patient>
             <dossier>9</dossier>
             <nom>Béchard</nom>
             <prénom>Marc</prénom>
-            <naissance>1980</naissance>
-            <naissance>8</naissance>
-            <naissance>8</naissance>
+            <naissance>
+                <année>1980</année>
+                <mois>8</mois>
+                <jour>8</jour>
+            </naissance>
             <sexe>M</sexe>
         </patient>
         <patient>
             <dossier>10</dossier>
             <nom>Chartrand</nom>
             <prénom>Mario</prénom>
-            <naissance>1947</naissance>
-            <naissance>7</naissance>
-            <naissance>23</naissance>
+            <naissance>
+                <année>1947</année>
+                <mois>7</mois>
+                <jour>23</jour>
+            </naissance>
             <sexe>M</sexe>
         </patient>
     </tabPatients>
@@ -173,144 +193,196 @@
         <hospitalisation>
             <établissement>1234</établissement>
             <dossier>5</dossier>
-            <admission>2000</admission>
-            <admission>8</admission>
-            <admission>14</admission>
-            <sortie>2001</sortie>
-            <sortie>8</sortie>
-            <sortie>14</sortie>
+            <admission>
+                <année>2000</année>
+                <mois>8</mois>
+                <jour>14</jour>
+            </admission>
+            <sortie>
+                <année>2001</année>
+                <mois>8</mois>
+                <jour>14</jour>
+            </sortie>
             <spécialité>médecine</spécialité>
         </hospitalisation>
         <hospitalisation>
             <établissement>1234</établissement>
             <dossier>10</dossier>
-            <admission>1992</admission>
-            <admission>12</admission>
-            <admission>12</admission>
-            <sortie>1992</sortie>
-            <sortie>12</sortie>
-            <sortie>12</sortie>
+            <admission>
+                <année>1992</année>
+                <mois>12</mois>
+                <jour>12</jour>
+            </admission>
+            <sortie>
+                <année>1992</année>
+                <mois>12</mois>
+                <jour>12</jour>
+            </sortie>
             <spécialité>chirurgie</spécialité>
         </hospitalisation>
         <hospitalisation>
             <établissement>2346</établissement>
             <dossier>8</dossier>
-            <admission>2003</admission>
-            <admission>3</admission>
-            <admission>3</admission>
-            <sortie>2003</sortie>
-            <sortie>3</sortie>
-            <sortie>5</sortie>
+            <admission>
+                <année>2003</année>
+                <mois>3</mois>
+                <jour>3</jour>
+            </admission>
+            <sortie>
+                <année>2003</année>
+                <mois>3</mois>
+                <jour>5</jour>
+            </sortie>
             <spécialité>médecine</spécialité>
         </hospitalisation>
         <hospitalisation>
             <établissement>2346</établissement>
             <dossier>1</dossier>
-            <admission>1997</admission>
-            <admission>11</admission>
-            <admission>11</admission>
-            <sortie>1997</sortie>
-            <sortie>11</sortie>
-            <sortie>12</sortie>
+            <admission>
+                <année>1997</année>
+                <mois>11</mois>
+                <jour>11</jour>
+            </admission>
+            <sortie>
+                <année>1997</année>
+                <mois>11</mois>
+                <jour>12</jour>
+            </sortie>
             <spécialité>orthopédie</spécialité>
         </hospitalisation>
         <hospitalisation>
             <établissement>2346</établissement>
             <dossier>3</dossier>
-            <admission>1995</admission>
-            <admission>4</admission>
-            <admission>12</admission>
-            <sortie>1995</sortie>
-            <sortie>4</sortie>
-            <sortie>30</sortie>
+            <admission>
+                <année>1995</année>
+                <mois>4</mois>
+                <jour>12</jour>
+            </admission>
+            <sortie>
+                <année>1995</année>
+                <mois>4</mois>
+                <jour>30</jour>
+            </sortie>
             <spécialité>médecine</spécialité>
         </hospitalisation>
         <hospitalisation>
             <établissement>3980</établissement>
             <dossier>5</dossier>
-            <admission>2000</admission>
-            <admission>2</admission>
-            <admission>14</admission>
-            <sortie>2000</sortie>
-            <sortie>3</sortie>
-            <sortie>14</sortie>
+            <admission>
+                <année>2000</année>
+                <mois>2</mois>
+                <jour>14</jour>
+            </admission>
+            <sortie>
+                <année>2000</année>
+                <mois>3</mois>
+                <jour>14</jour>
+            </sortie>
             <spécialité>médecine</spécialité>
         </hospitalisation>
         <hospitalisation>
             <établissement>3980</établissement>
             <dossier>5</dossier>
-            <admission>2001</admission>
-            <admission>1</admission>
-            <admission>1</admission>
-            <sortie>2001</sortie>
-            <sortie>2</sortie>
-            <sortie>1</sortie>
+            <admission>
+                <année>2001</année>
+                <mois>1</mois>
+                <jour>1</jour>
+            </admission>
+            <sortie>
+                <année>2001</année>
+                <mois>2</mois>
+                <jour>1</jour>
+            </sortie>
             <spécialité>médecine</spécialité>
         </hospitalisation>
         <hospitalisation>
             <établissement>3980</établissement>
             <dossier>9</dossier>
-            <admission>1995</admission>
-            <admission>4</admission>
-            <admission>3</admission>
-            <sortie>1995</sortie>
-            <sortie>4</sortie>
-            <sortie>8</sortie>
+            <admission>
+                <année>1995</année>
+                <mois>4</mois>
+                <jour>3</jour>
+            </admission>
+            <sortie>
+                <année>1995</année>
+                <mois>4</mois>
+                <jour>8</jour>
+            </sortie>
             <spécialité>orthopédie</spécialité>
         </hospitalisation>
         <hospitalisation>
             <établissement>3980</établissement>
             <dossier>7</dossier>
-            <admission>1999</admission>
-            <admission>11</admission>
-            <admission>27</admission>
-            <sortie>1999</sortie>
-            <sortie>12</sortie>
-            <sortie>4</sortie>
+            <admission>
+                <année>1999</année>
+                <mois>11</mois>
+                <jour>27</jour>
+            </admission>
+            <sortie>
+                <année>1999</année>
+                <mois>12</mois>
+                <jour>4</jour>
+            </sortie>
             <spécialité>chirurgie</spécialité>
         </hospitalisation>
         <hospitalisation>
             <établissement>3980</établissement>
             <dossier>10</dossier>
-            <admission>1997</admission>
-            <admission>4</admission>
-            <admission>28</admission>
-            <sortie>1997</sortie>
-            <sortie>5</sortie>
-            <sortie>5</sortie>
+            <admission>
+                <année>1997</année>
+                <mois>4</mois>
+                <jour>28</jour>
+            </admission>
+            <sortie>
+                <année>1997</année>
+                <mois>5</mois>
+                <jour>5</jour>
+            </sortie>
             <spécialité>chirurgie</spécialité>
         </hospitalisation>
         <hospitalisation>
             <établissement>4177</établissement>
             <dossier>3</dossier>
-            <admission>2001</admission>
-            <admission>8</admission>
-            <admission>3</admission>
-            <sortie>2001</sortie>
-            <sortie>12</sortie>
-            <sortie>5</sortie>
+            <admission>
+                <année>2001</année>
+                <mois>8</mois>
+                <jour>3</jour>
+            </admission>
+            <sortie>
+                <année>2001</année>
+                <mois>12</mois>
+                <jour>5</jour>
+            </sortie>
             <spécialité>médecine</spécialité>
         </hospitalisation>
         <hospitalisation>
             <établissement>4177</établissement>
             <dossier>3</dossier>
-            <admission>2002</admission>
-            <admission>2</admission>
-            <admission>2</admission>
-            <sortie>2002</sortie>
-            <sortie>2</sortie>
-            <sortie>23</sortie>
+            <admission>
+                <année>2002</année>
+                <mois>2</mois>
+                <jour>2</jour>
+            </admission>
+            <sortie>
+                <année>2002</année>
+                <mois>2</mois>
+                <jour>23</jour>
+            </sortie>
             <spécialité>orthopédie</spécialité>
         </hospitalisation>
         <hospitalisation>
             <établissement>7306</établissement>
             <dossier>2</dossier>
-            <admission>1998</admission>
-            <admission>5</admission>
-            <admission>23</admission>
-            <sortie>1998</sortie>
-            <sortie>5</sortie>
-            <sortie>27</sortie>
+            <admission>
+                <année>1998</année>
+                <mois>5</mois>
+                <jour>23</jour>
+            </admission>
+            <sortie>
+                <année>1998</année>
+                <mois>5</mois>
+                <jour>27</jour>
+            </sortie>
             <spécialité>orthopédie</spécialité>
         </hospitalisation>
     </tabHospitalisations>

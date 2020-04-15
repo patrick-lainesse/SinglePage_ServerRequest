@@ -4,17 +4,24 @@ Patrick Lainesse
 IFT1142, Hiver 2020
 */
 
+let xmlHopitaux = null;
+
 // pour initialiser les select??? renommer et déplacer dans le code
 $(document).ready(function(){
     $('select').formSelect();
     $(".dropdown-content>li>span").css("color", "#660066");
 
     listePatients();
-    //$(".dropdown-content>li>span").css("background", "#006600");
-    //???? pour les select
 });
 
-let xmlHopitaux = null;
+const viderContenu = () => {
+    let contenu = document.getElementById('contenu');
+
+    // vider l'emplacement au cas où il y a déjà un tableau ou un select d'afficher
+    while(contenu.firstChild) {
+        contenu.removeChild(contenu.firstChild);
+    }
+};
 
 // mettre un argument à cette fonction????
 function listePatients() {
@@ -26,15 +33,15 @@ function listePatients() {
         dataType: "xml",
         success: function(reponse) {
             xmlHopitaux = reponse;
-            afficherTableau("patient");
+            //???afficherTableau("patient");
         },
         fail: function() {
-            alert("Gros problème");
+            alert("Dû à des effectifs réduits en cette période de pandémie, la page n'a pu s'afficher correctement.");
         }
     })
 }
 
-/* Fonction qui s'exécute quand on sélectionne une des quatre premières options (afficher patients, établissements,...).
+/* ??? changer cette description Fonction qui s'exécute quand on sélectionne une des quatre premières options (afficher patients, établissements,...).
 Elle reçoit comme paramètre l'élément qui a été sélectionné, pour permettre de sélectionner
 les bonnes informations à afficher. Le deuxième paramètre est le no de dossier du patient à afficher pour l'option
 hospitalisations par patient. Le no de dossier est à 0 pour les trois premières options (afficher les tableaux JSON). */
@@ -43,25 +50,50 @@ function afficherTableau(elem) {
 
     let tableauXML = xmlHopitaux.getElementsByTagName(elem);
 
-    let container = document.createElement('div');
-    let tableau = document.createElement('table');
+
+    //let container = document.createElement('div');
+    //let tableau = document.createElement('table');
     let head = document.createElement('thead');
     let body = document.createElement('tbody');
 
-    tableau.classList.add('striped');
-    tableau.classList.add('responsive-table');
-    container.classList.add('container');
+    viderContenu(); // attention au cas spécialité! Peut-être mettre plus à la fin????
 
-
+    styleTableau();
+    let container = document.getElementById('container');
+    let tableau = document.getElementById('tableau');
 
     // afficher l'en-tête du tableau
-    for(let colonne of tableauXML[0].getElementsByTagName('*')) {
+    //for(let colonne of tableauXML[0].getElementsByTagName('*')) {
+    for(let colonne of tableauXML[0].children) {
         let en_tete = document.createElement('th');
         let attribut = majuscule(colonne.nodeName);
+
+        if(colonne.nodeName === "code_postal") {
+            attribut = "Code postal";
+        }
+
         en_tete.appendChild(document.createTextNode(attribut));
         head.appendChild(en_tete);
     }
     tableau.appendChild(head);
+
+
+/*    for(let info of objet.children) {
+        let attribut = info.nodeName;
+        let valeur = mefTableau(attribut, choixHopital);
+        if(valeur === "défaut") {
+            valeur = info.firstChild.nodeValue;
+        }
+
+        if(attribut === "code_postal") {
+            texte = "Code postal" + " : <br>" + valeur;
+        } else if(attribut === "adresse") {
+            texte = majuscule(attribut) + " : " + valeur;
+        } else {
+            texte = majuscule(attribut) + " : <br>" + valeur;
+        }*/
+
+
 
     for(let i=0; i<tableauXML.length; i++) {
         let patient = tableauXML[i];
@@ -82,10 +114,11 @@ function afficherTableau(elem) {
     }
     tableau.appendChild(body);
 
-    document.getElementById('contenu').appendChild(container);
-    container.appendChild(tableau);
+    //document.getElementById('contenu').appendChild(container);
+    //container.appendChild(tableau);
 }
 
+// Fonction qui fait afficher le menu select selon le choix l'ayant fait apparaître
 function charger_select(identifiant) {
 
     let contenu = document.getElementById('contenu');
@@ -101,31 +134,38 @@ function charger_select(identifiant) {
             break;
         case 'établissements':
             menu.setAttribute('id', 'établissements');
-            //menu.setAttribute('onChange', 'charger_select("spécialités")');       ???
             menu.setAttribute('onChange', 'afficherHopital()');
             tableauXML = xmlHopitaux.getElementsByTagName('hopital');
             break;
         case 'spécialités':
             let menuHopital = document.getElementById('établissements').options;
             var choixHopital = menuHopital[menuHopital.selectedIndex].id;
+            // récupération de la rangée où se sont affichées les informations de l'établissement sélectionné
             var infosHopital = document.getElementById('infosHopital');
             menu.setAttribute('id', 'spécialités');
             menu.setAttribute('onChange', 'afficherTableau("spécialités")');
             tableauXML = xmlHopitaux.getElementsByTagName('hospitalisation');
             break;
+        default:
+            erreur();
+            location.reload();
     }
 
-    // puisqu'on a d'abord besoin de récupérer le choix effectué pour le cas "spécialités", on effecture la fonction
-    // styleCreerDivSelect() et l'obtention d'une référence sur l'emplacement du select, car cette fonction efface
-    // le contenu de la section "contenu".
+    // création des différents div pour encadrer l'affichage du select et élimination des éléments de la page (tableau précédent,
+    // autres menus dans un select)
     styleCreerDivSelect();
+
+    // réaffichage des infos de l'établissement sélectionné dans le cas du select "choix des spécialités"
     if(identifiant === 'spécialités') {
         contenu.insertBefore(infosHopital, contenu.childNodes[0]);
     }
+
+    // on récupère l'emplacement où faire afficher le select à créer
     let divSelect = document.getElementById('divSelect');
 
-    // créer des options selon le menu select que l'on cherche à créer
+    // ajouter les options selon le menu select que l'on cherche à créer
     for(let i=0; i<tableauXML.length; i++) {
+        // un objet est une entrée dans le tableau xml, soit un patient, un établissement ou une hospitalisation
         let objet = tableauXML[i];
         let option = document.createElement('option');
 
@@ -146,7 +186,7 @@ function charger_select(identifiant) {
                 let codeEtab = objet.getElementsByTagName('établissement')[0].firstChild.nodeValue;
                 let specialite = objet.getElementsByTagName('spécialité')[0].firstChild.nodeValue;
 
-                if(codeEtab == choixHopital && !option_existe(specialite, menu)) {
+                if(codeEtab === choixHopital && !option_existe(specialite, menu)) {
                     option.setAttribute('id', specialite);
                     option.appendChild(document.createTextNode(majuscule(specialite)));
                     menu.appendChild(option);
@@ -155,14 +195,8 @@ function charger_select(identifiant) {
             default:
                 erreur();
                 location.reload();
-                break;
         }
     }
-/*
-    // vider l'emplacement au cas où il y a déjà un tableau affiché ???? il faut préalablement récupérer le select s'il y en a un, donc ID pour ce select ????
-    while(contenu.firstChild) {
-        contenu.removeChild(contenu.firstChild);
-    }*/
 
     // ajouter les éléments au DOM de la page
     divSelect.appendChild(menu);
@@ -212,7 +246,6 @@ function afficherHopital() {
                 } else {
                     texte = majuscule(attribut) + " : <br>" + valeur;
                 }
-
 
                 let div = document.getElementById(info.nodeName);
                 div.innerHTML = texte;

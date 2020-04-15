@@ -5,6 +5,24 @@ Ensemble des fonctions qui effectuent des manipulations sur les styles pour dés
 les codes des scripts principaux
 */
 
+/* ==============================================================================================
+                                    TABLEAUX
+============================================================================================== */
+
+const styleTableau = () => {
+    let container = document.createElement('div');
+    let tableau = document.createElement('table');
+
+    container.setAttribute('id', 'container');
+    tableau.setAttribute('id', 'tableau');
+
+    tableau.classList.add('striped');
+    tableau.classList.add('responsive-table');
+    container.classList.add('container', 'padding-top10');
+
+    document.getElementById('contenu').appendChild(container);
+    container.appendChild(tableau);
+};
 
 /* ==============================================================================================
                                     MENU SELECT
