@@ -2,11 +2,12 @@
 Patrick Lainesse
 740302
 IFT1142, Hiver 2020
+??? recherche classlist????
 */
 
 let xmlHopitaux = null;
 
-// Fonction qui applique le style material design aux select
+// Fonction qui lance la requête jQuery et ajax à l'ouverture de la page
 $(document).ready(function(){
     listePatients();
 });
@@ -19,6 +20,42 @@ const viderContenu = () => {
     while(contenu.firstChild) {
         contenu.removeChild(contenu.firstChild);
     }
+};
+
+// Fonction qui reçoit un map en argument et affiche le message approprié
+const message = (map) => {
+
+    // élimine l'ancien message et crée le div avec la classe css nécessaire pour afficher le message
+    initFooter();
+
+    let texte;
+    let textNode;
+    let div = document.getElementById('message');
+    let type = map.get('type');
+
+    switch (type) {
+        case 'patient':
+        case 'hospitalisation':
+            texte = "Il y a " + map.get('nombre') + " " + type + "(s).";
+            break;
+        case 'hopital':
+            texte = "Il y a " + map.get('nombre') + " hôpitaux.";
+            break;
+        case 'patients':
+            texte = "Choisir un patient pour afficher toutes ses hospitalisations.";
+            break;
+        case 'établissements':
+            texte = "Choisir un établissement pour afficher les spécialités s'y retrouvant.";
+            break;
+        case 'spécialités':
+            texte = "Choisir une spécialité pour afficher toutes les hospitalisations pour cette spécialité dans cet établissement.";
+            break;
+    }
+    textNode = document.createTextNode(texte);
+    /*mapMessage.set('type', elem);
+    mapMessage.set('nombre', nombreMessage);*/
+
+    div.appendChild(textNode);
 };
 
 /* Fonction qui effectue la requête au serveur (ici, la requête se fait plutôt localement, car je n'ai pas suivi
@@ -49,6 +86,7 @@ function afficherTableau(elem) {
     let tableau;
     let head;
     let body;
+    let nombreMessage = 0;
 
     // récupération des choix provenant des menus select dans le cas des deux dernières options de la page
     if(elem === 'hosPatient') {
@@ -79,6 +117,9 @@ function afficherTableau(elem) {
     head = document.createElement('thead');
     body = document.createElement('tbody');
 
+
+    head.classList.add('head-couleur');
+
     // créer les div pour encadrer le tableau et récupération de l'emplacement où afficher le tableau
     styleTableau();
     tableau = document.getElementById('tableau');
@@ -87,6 +128,8 @@ function afficherTableau(elem) {
     for(let colonne of tableauXML[0].children) {
         let en_tete = document.createElement('th');
         let attribut = majuscule(colonne.nodeName);
+
+        en_tete.classList.add('head-couleur');
 
         if(colonne.nodeName === "code_postal") {
             attribut = "Code postal";
@@ -114,6 +157,7 @@ function afficherTableau(elem) {
         /* si la requête provient d'une sélection sur une liste select et que la sélection correspond à l'objet du tableau XML,
         on affiche cette ligne du tableau XML */
         if(test) {
+            nombreMessage++;
             for(let info of objet.children) {
 
                 // ici, la clé permettra de faire la mise en forme du texte xml
@@ -142,6 +186,7 @@ function afficherTableau(elem) {
                 }
 
                 td = document.createElement('td');
+                td.classList.add('bordure');
                 td.appendChild(document.createTextNode(valeur));
                 tr.appendChild(td);
             }   // fin du parcours des attributs d'un objet du tableau XML (deuxième boucle for)
@@ -149,6 +194,13 @@ function afficherTableau(elem) {
         body.appendChild(tr);
     }   // fin du parcours des objets du tableau XML (première boucle for)
     tableau.appendChild(body);
+    let mapMessage = new Map();
+    mapMessage.set('type', elem);
+    mapMessage.set('nombre', nombreMessage);
+
+
+    //message(nombreMessage);
+    message(mapMessage);
 }
 
 // Fonction qui fait afficher le menu select selon le choix l'ayant fait apparaître
@@ -158,6 +210,11 @@ function charger_select(identifiant) {
     let menu = document.createElement('select');
     let tableauXML;
     let divSelect;
+    let mapMessage = new Map();
+
+    // afficher le message dans la zone d'affichage au bas de la page
+    mapMessage.set('type', identifiant);
+    message(mapMessage);
 
     // créer un select selon l'option de la page qui a été sélectionnée
     switch (identifiant) {
@@ -182,13 +239,13 @@ function charger_select(identifiant) {
             location.reload();
     }
     menu.setAttribute('id', identifiant);
-    optionChoisir(identifiant);
+    //optionChoisir(identifiant);
 
-    /*let option = document.createElement("option");
+    let option = document.createElement("option");
     let textNode = document.createTextNode("Choisir...");
     option.classList.add('disabled', 'selected');
     option.appendChild(textNode);
-    menu.appendChild(option);*/
+    menu.appendChild(option);
 
     /* création des différents div pour encadrer l'affichage du select et élimination des éléments de la page (tableau précédent,
     autres menus dans un select) */

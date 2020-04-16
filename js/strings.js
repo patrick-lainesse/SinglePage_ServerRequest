@@ -196,3 +196,25 @@ const texteOptionHopital = codeEtablissement => {
 
     return texte;
 };
+
+/* ==============================================================================================
+                          ZONE D'AFFICHAGE DU MESSAGE (STATUS)
+============================================================================================== */
+
+// Fonction qui retourne le texte des options du menu select en format: 4 (Patrick Lainesse)
+const initFooter = () => {
+
+    let footer = document.getElementsByTagName('footer')[0];
+    let div = document.getElementById('message');
+
+    // éliminer le message s'il est déjà présent
+    if(div != null) {
+        footer.removeChild(div);
+    }
+
+    div = document.createElement('div');
+    div.setAttribute('id', 'message');
+    div.classList.add('container', 'status-txt');
+
+    footer.appendChild(div);
+};

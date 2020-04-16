@@ -16,9 +16,9 @@ const styleTableau = () => {
     container.setAttribute('id', 'container');
     tableau.setAttribute('id', 'tableau');
 
-    tableau.classList.add('striped');
+    tableau.classList.add('striped', 'top-round-rainbow');
     tableau.classList.add('responsive-table');
-    container.classList.add('container', 'padding-top10');
+    container.classList.add('container', 'padding-top10', 'containerArcEnCiel');
 
     document.getElementById('contenu').appendChild(container);
     container.appendChild(tableau);
