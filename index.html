@@ -1,25 +1,27 @@
-<!DOCTYPE html>
 <!--
 Travail préparé par: Patrick Lainesse
 Matricule: 740302
 Dans le cadre du cours IFT1142, session H2020
 
 Single Page Application qui se connecte à un serveur PHP pour obtenir des données en format XML et construit des tableaux
-pour afficher les patients, établissements et hospitalisations.
+pour afficher les patients, établissements et hospitalisations. Les codes Javascript sont divisés en trois fichiers:
+- scripts.js pour les manipulations sur le DOM et les réactions aux événements
+- strings.js pour les manipulations plus complexes impliquant du texte
+- styles.js pour les manipulations sur le style (couleurs, padding, etc.) appliqué sur les éléments du DOM
+
+J'ai réalisé un peu tard malheureusement que je pouvais retourner un div (ou autre élément du DOM) contenant des noeuds enfants
+dans une fonction JavaScript. J'aurais pu grandement simplifier mon code, avoir su cela auparavant.
 
 Notions appliquées:
-- ES6 pour la programmation Javascript
+- Quelques éléments de ES6 pour la programmation Javascript (malheureusement, le cours a été présenté trop tard pour
+que j'aie le temps de l'appliquer à l'ensemble du code)
 - DOM pour accéder et créer des éléments dans la page Web
 - AJAX et JQuery pour effectuer les requêtes au serveur
 - Serveur simple programmé en PHP
-- Utilisation du material design pour bâtir le squelette de la page Web
-
-Ressources utilisées:
-- https://materializecss.com/
-- Arrière-plan: Pishier http://pishier.com/
-- Logo: LovePaperCrafts https://www.lovepapercrafts.com/free-rainbow-svg/
-- Favicon: https://www.stockio.com/free-icon/rainbow-2
+- Utilisation d'une librairie pour implémenter le material design qui a servi à bâtir le squelette de la page Web
 -->
+
+<!DOCTYPE html>
 
 <html lang="fr">
 <head>
@@ -34,21 +36,16 @@ Ressources utilisées:
 <body>
 
 <header>
-<!--navbar-->
 <nav class="nav-extended blue darken-5">
     <div class="nav-wrapper">
         <img src="images/rainbow.png" class="logo padding-top1" alt="Logo Ça va bien aller"/><a href="#" class="brand-logo padding-left inactif">Ça va bien aller</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <!--<li><a href="sass.html">Sass</a></li>
-            <li><a href="badges.html">Components</a></li>
-            <li><a href="collapsible.html">JavaScript</a></li>-->
             <li>Patrick Lainesse</li>
             <li class="paddingH">Matricule 740302</li>
         </ul>
     </div>
     <div class="nav-content">
-        <!--mettre en hide comme ce qui est en commentaire plus haut??? // enlever les href???? -->
         <ul class="tabs tabs-transparent height-auto">
             <li class="tab height-auto"><a class="waves-effect btn-flat green darken-4 nav-button" onclick="afficherTableau('patient');"><i class="material-icons left">assignment_ind</i>Liste<br>des patients</a></li>
             <li class="tab height-auto"><a class="waves-effect btn-flat light-green darken-2 nav-button" href="#test2" onclick="afficherTableau('hopital');"><i class="material-icons left">assignment</i>Liste des<br>établissements</a></li>
@@ -58,175 +55,18 @@ Ressources utilisées:
         </ul>
     </div>
 </nav>
-
-    <!--???-->
-<ul class="sidenav" id="mobile-demo">
-    <li><a href="sass.html">Sass</a></li>
-    <li><a href="badges.html">Components</a></li>
-    <li><a href="collapsible.html">JavaScript</a></li>
-</ul>
-<!--fin navbar-->
 </header>
+
 <main>
-
-    <!-- endroit où iront les infos de l'hôpital sélectionné -->
+    <!-- endroit où s'affiche tous les résultats du code JavaScript -->
     <div id="contenu" class="padding-bot100"></div>
-
-
-    <!--<div class="center-text">
-    &lt;!&ndash; endroit où iront les infos de l'hôpital sélectionné &ndash;&gt;
-    <div class="row padding-top10 center-text">
-        <div class="col s2 offset-s1 red">Établissement:<br>2320</div>
-        <div class="col s2 orange">Nom:<br>Hôpital Nord</div>
-        <div class="col s2 yellow">Adresse: 7562, rue du Souvenir, Nordville, Qc</div>
-        <div class="col s2 green">Code postal:<br>J4R 2Z5</div>
-        <div class="col s2 blue">Téléphone:<br>(450) 222-3333</div>
-    </div>
-    </div>
-
-    <div class="container">
-    &lt;!&ndash; endroit où iront les select &ndash;&gt;
-    <div class="row">
-        <div class="input-field col s3">
-            <select>
-                <option value="" disabled selected>Choose your option</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
-            </select>
-            <label>Materialize Select</label>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="input-field col s3">
-            <select>
-                <option value="" disabled selected>Choose your option</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
-            </select>
-            <label>Materialize Select</label>
-        </div>
-    </div>
-
-    &lt;!&ndash;endroit où iront les tableaux&ndash;&gt;
-    <table class="striped responsive-table">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Item Name</th>
-            <th>Item Price</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr>
-            <td>Alvin</td>
-            <td>Eclair</td>
-            <td>$0.87</td>
-        </tr>
-        <tr>
-            <td>Alan</td>
-            <td>Jellybean</td>
-            <td>$3.76</td>
-        </tr>
-        <tr>
-            <td>Jonathan</td>
-            <td>Lollipop</td>
-            <td>$7.00</td>
-        </tr>
-        <tr>
-            <td>Alvin</td>
-            <td>Eclair</td>
-            <td>$0.87</td>
-        </tr>
-        <tr>
-            <td>Alan</td>
-            <td>Jellybean</td>
-            <td>$3.76</td>
-        </tr>
-        <tr>
-            <td>Jonathan</td>
-            <td>Lollipop</td>
-            <td>$7.00</td>
-        </tr>
-        <tr>
-            <td>Alvin</td>
-            <td>Eclair</td>
-            <td>$0.87</td>
-        </tr>
-        <tr>
-            <td>Alan</td>
-            <td>Jellybean</td>
-            <td>$3.76</td>
-        </tr>
-        <tr>
-            <td>Jonathan</td>
-            <td>Lollipop</td>
-            <td>$7.00</td>
-        </tr>
-        <tr>
-            <td>Alvin</td>
-            <td>Eclair</td>
-            <td>$0.87</td>
-        </tr>
-        <tr>
-            <td>Alan</td>
-            <td>Jellybean</td>
-            <td>$3.76</td>
-        </tr>
-        <tr>
-            <td>Jonathan</td>
-            <td>Lollipop</td>
-            <td>$7.00</td>
-        </tr>
-        <tr>
-            <td>Alvin</td>
-            <td>Eclair</td>
-            <td>$0.87</td>
-        </tr>
-        <tr>
-            <td>Alan</td>
-            <td>Jellybean</td>
-            <td>$3.76</td>
-        </tr>
-        <tr>
-            <td>Jonathan</td>
-            <td>Lollipop</td>
-            <td>$7.00</td>
-        </tr>
-        <tr>
-            <td>Alvin</td>
-            <td>Eclair</td>
-            <td>$0.87</td>
-        </tr>
-        <tr>
-            <td>Alan</td>
-            <td>Jellybean</td>
-            <td>$3.76</td>
-        </tr>
-        <tr>
-            <td>Jonathan</td>
-            <td>Lollipop</td>
-            <td>$7.00</td>
-        </tr>
-        </tbody>
-    </table>
-
-    </div> &lt;!&ndash;fin container&ndash;&gt;-->
 </main>
 
-<!--footer-->
 <footer class="page-footer blue darken-5 fixed padding-top0">
     <div class="center-text">
         <a class="btn-large status-btn red darken-2">Status</a>
     </div>
-    <!--
-    <div class="container status-txt">Texte en exemple</div>
-    ???-->
 </footer>
-<!--fin footer-->
 
 <script src="js/jquery-3.5.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

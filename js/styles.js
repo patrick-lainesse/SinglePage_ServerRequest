@@ -34,17 +34,6 @@ const styleSelect = () => {
     $(".dropdown-content>li>span").css("color", "#d32f2f");
 };
 
-// ???? à régler, trouver comment faire un append sans le faire deux fois.
-/*const optionChoisir = identifiant => {
-
-    let menu = document.getElementById(identifiant);
-    let option = document.createElement("option");
-    let textNode = document.createTextNode("Choisir...");
-    option.classList.add('disabled', 'selected');
-    option.appendChild(textNode);
-    menu.appendChild(option);
-};*/
-
 // Fonction pour créer les div qui servent à encadrer l'élément select afin qu'il possède le style Material Design
 const styleCreerDivSelect = () => {
 

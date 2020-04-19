@@ -1,8 +1,30 @@
 /*
-Patrick Lainesse
-740302
-IFT1142, Hiver 2020
-??? recherche classlist????
+Travail préparé par: Patrick Lainesse
+Matricule: 740302
+Dans le cadre du cours IFT1142, session H2020
+
+Single Page Application qui se connecte à un serveur PHP pour obtenir des données en format XML et construit des tableaux
+pour afficher les patients, établissements et hospitalisations. Les codes Javascript sont divisés en trois fichiers:
+- scripts.js pour les manipulations sur le DOM et les réactions aux événements
+- strings.js pour les manipulations plus complexes impliquant du texte
+- styles.js pour les manipulations sur le style (couleurs, padding, etc.) appliqué sur les éléments du DOM
+
+J'ai réalisé un peu tard malheureusement que je pouvais retourner un div (ou autre élément du DOM) contenant des noeuds enfants
+dans une fonction JavaScript. J'aurais pu grandement simplifier mon code, avoir su cela auparavant.
+
+Notions appliquées:
+- Quelques éléments de ES6 pour la programmation Javascript (malheureusement, le cours a été présenté trop tard pour
+que j'aie le temps de l'appliquer à l'ensemble du code)
+- DOM pour accéder et créer des éléments dans la page Web
+- AJAX et JQuery pour effectuer les requêtes au serveur
+- Serveur simple programmé en PHP
+- Utilisation d'une librairie pour implémenter le material design qui a servi à bâtir le squelette de la page Web
+
+Ressources utilisées:
+- https://materializecss.com/
+- Arrière-plan: Pishier http://pishier.com/
+- Logo: LovePaperCrafts https://www.lovepapercrafts.com/free-rainbow-svg/
+- Favicon: https://www.stockio.com/free-icon/rainbow-2
 */
 
 let xmlHopitaux = null;
@@ -90,15 +112,11 @@ function afficherTableau(elem) {
 
     // récupération des choix provenant des menus select dans le cas des deux dernières options de la page
     if(elem === 'hosPatient') {
-        console.log('hosPatient');
         let select = document.getElementById('patients').options;
         selection = select[select.selectedIndex].id;
-        console.log(selection);
         elem = 'hospitalisation';
     } else if(elem === 'spécialités') {
         let select = document.getElementById('spécialités').options;
-        //let menuHopital = document.getElementById('établissements').options;
-        //var choixHopital = menuHopital[menuHopital.selectedIndex].id;
         var infosHopital = document.getElementById('infosHopital');
         selection = select[select.selectedIndex].id;
         id = document.getElementById('divEtablissement').getAttribute('value');
@@ -198,8 +216,6 @@ function afficherTableau(elem) {
     mapMessage.set('type', elem);
     mapMessage.set('nombre', nombreMessage);
 
-
-    //message(nombreMessage);
     message(mapMessage);
 }
 
@@ -239,7 +255,6 @@ function charger_select(identifiant) {
             location.reload();
     }
     menu.setAttribute('id', identifiant);
-    //optionChoisir(identifiant);
 
     let option = document.createElement("option");
     let textNode = document.createTextNode("Choisir...");
