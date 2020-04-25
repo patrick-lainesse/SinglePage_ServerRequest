@@ -58,10 +58,12 @@ const message = (map) => {
     switch (type) {
         case 'patient':
         case 'hospitalisation':
-            texte = "Il y a " + map.get('nombre') + " " + type + "(s).";
+            //texte = "Il y a " + map.get('nombre') + " " + type + "(s).";
+            texte = `Il y a ${map.get('nombre')} ${type}(s).`;
             break;
         case 'hopital':
-            texte = "Il y a " + map.get('nombre') + " hôpitaux.";
+            //texte = "Il y a " + map.get('nombre') + " hôpitaux.";
+            texte = `Il y a ${map.get('nombre')} hôpitaux.`;
             break;
         case 'patients':
             texte = "Choisir un patient pour afficher toutes ses hospitalisations.";
@@ -74,8 +76,6 @@ const message = (map) => {
             break;
     }
     textNode = document.createTextNode(texte);
-    /*mapMessage.set('type', elem);
-    mapMessage.set('nombre', nombreMessage);*/
 
     div.appendChild(textNode);
 };
@@ -96,50 +96,20 @@ function listePatients() {
     })
 }
 
-/* Fonction qui fait afficher le tableau dans la section contenu selon la sélection faite dans le menu du haut de la
-page ou la sélection faite dans un menu select */
-function afficherTableau(elem) {
+const choixSelect = idSelect => {
+    let select = document.getElementById(idSelect).options;
+    let selection = select[select.selectedIndex].id;
+    return selection;
+};
 
-    // sélection effectuée sur le select qui a déclenché ce tableau (si c'est le cas)
-    let selection;
-    let id;
+// Fonction qui construit l'en-tête du tableau selon la sélection effectuée dans le menu
+const enTete = tableauXML => {
 
-    let tableauXML;
-    let tableau;
-    let head;
-    let body;
-    let nombreMessage = 0;
-
-    // récupération des choix provenant des menus select dans le cas des deux dernières options de la page
-    if(elem === 'hosPatient') {
-        let select = document.getElementById('patients').options;
-        selection = select[select.selectedIndex].id;
-        elem = 'hospitalisation';
-    } else if(elem === 'spécialités') {
-        let select = document.getElementById('spécialités').options;
-        var infosHopital = document.getElementById('infosHopital');
-        selection = select[select.selectedIndex].id;
-        id = document.getElementById('divEtablissement').getAttribute('value');
-        console.log(selection + " et id: " + id);
-    }
-
-    viderContenu();
-
-    // réaffichage des infos de l'établissement sélectionné dans le cas du select "choix des spécialités"
-    if(elem === 'spécialités') {
-        contenu.insertBefore(infosHopital, contenu.childNodes[0]);
-        elem = 'hospitalisation';
-    }
-
-    tableauXML = xmlHopitaux.getElementsByTagName(elem);
-    head = document.createElement('thead');
-    body = document.createElement('tbody');
-
-
+    let head = document.createElement('thead');
+    let body = document.createElement('tbody');
     head.classList.add('head-couleur');
 
     // créer les div pour encadrer le tableau et récupération de l'emplacement où afficher le tableau
-    styleTableau();
     tableau = document.getElementById('tableau');
 
     // afficher l'en-tête du tableau
@@ -157,6 +127,46 @@ function afficherTableau(elem) {
         head.appendChild(en_tete);
     }
     tableau.appendChild(head);
+    return tableau;
+};
+
+/* Fonction qui fait afficher le tableau dans la section contenu selon la sélection faite dans le menu du haut de la
+page ou la sélection faite dans un menu select */
+function afficherTableau(elem) {
+
+    // sélection effectuée sur le select qui a déclenché ce tableau (si c'est le cas)
+    let selection;
+    let id;
+
+    let tableauXML;
+    let tableau;
+    let body;
+    let nombreMessages = 0;
+
+    // récupération des choix provenant des menus select dans le cas des deux dernières options de la page
+    if(elem === 'hosPatient') {
+        selection = choixSelect('patients');
+        elem = 'hospitalisation';
+    } else if(elem === 'spécialités') {
+        var infosHopital = document.getElementById('infosHopital');
+        selection = choixSelect('spécialités');
+        id = document.getElementById('divEtablissement').getAttribute('value');
+    }
+
+    viderContenu();
+
+    // réaffichage des infos de l'établissement sélectionné dans le cas du select "choix des spécialités"
+    if(elem === 'spécialités') {
+        contenu.insertBefore(infosHopital, contenu.childNodes[0]);
+        elem = 'hospitalisation';
+    }
+
+    // sélection du tableau XML dans lequel on puise les données pour remplir le tableau
+    tableauXML = xmlHopitaux.getElementsByTagName(elem);
+    styleTableau();
+    tableau = enTete(tableauXML);
+
+    body = document.createElement('tbody'); //???
 
     // affichage des rangées du tableau
     for(let i=0; i<tableauXML.length; i++) {
@@ -175,7 +185,7 @@ function afficherTableau(elem) {
         /* si la requête provient d'une sélection sur une liste select et que la sélection correspond à l'objet du tableau XML,
         on affiche cette ligne du tableau XML */
         if(test) {
-            nombreMessage++;
+            nombreMessages++;
             for(let info of objet.children) {
 
                 // ici, la clé permettra de faire la mise en forme du texte xml
@@ -214,7 +224,7 @@ function afficherTableau(elem) {
     tableau.appendChild(body);
     let mapMessage = new Map();
     mapMessage.set('type', elem);
-    mapMessage.set('nombre', nombreMessage);
+    mapMessage.set('nombre', nombreMessages);
 
     message(mapMessage);
 }

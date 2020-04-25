@@ -201,7 +201,7 @@ const texteOptionHopital = codeEtablissement => {
                           ZONE D'AFFICHAGE DU MESSAGE (STATUS)
 ============================================================================================== */
 
-// Fonction qui retourne le texte des options du menu select en format: 4 (Patrick Lainesse)
+// Fonction qui nettoie la zone d'affichage de texte et crée les cadre et style appropriés pour l'affichage d'un message
 const initFooter = () => {
 
     let footer = document.getElementsByTagName('footer')[0];
